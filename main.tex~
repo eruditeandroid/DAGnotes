@@ -2,7 +2,7 @@
 
 \usepackage{notes}
 
-\title{Derived Algebraic Geometry Notes}
+\title{DAG Notes}
 \date{\today}
 
 \begin{document}
@@ -420,12 +420,18 @@ Dually, the category of cosimplicial objects in $\Csf$ is $\csf\Csf = \Fun(\Delt
 
 \begin{cons}
 	Consider the left Kan extension $|-|: \sSet \to \Top$ in
-	\[
-		\begin{tikzcd}
-			\Delta \arrow[r, "\Delta^\bullet_{\mathrm{top}}"] \arrow[d, "{[n]} \mapsto \Delta^n"] & \mathrm{Top} \\
-	\sSet \arrow[ur, dashed, "|-|"]
-		\end{tikzcd}
-	\]
+	%\[
+	%	\begin{tikzcd}
+	%		\Delta \rar["\Delta^\bullet_{\mathrm{top}}"] \dar["[n] \mapsto \Delta^n"] & \Top \\
+	%		\sSet \ar[ur, dashed, "|-|"]
+	%	\end{tikzcd}.
+	%\]
+\[
+\begin{tikzcd}
+\Delta \arrow[r, "\Delta^\bullet_{\mathrm{top}}"] \arrow[d, "{[n]} \mapsto \Delta^n"] & \mathrm{Top} \\
+\sSet \arrow[ur, dashed, "|-|"]
+\end{tikzcd}
+\]
 	We call this functor \emph{geometric realization}.
 \end{cons}
 
@@ -575,15 +581,15 @@ The term ``module'' will now be used for a (potentially unbounded) complex of $R
 			\dots \rar & F^{-2} \rar & F^{-1} \rar & F^0 \rar & 0 \rar & \dots
 		\end{tikzcd}
 	\]
-	is semi-free.\footnote{If $R$ is not classical, this complex doesn't really make sense.}
+	is semi-free.\footnote{If $R$ is not classical, this complex doesn't really make sense, at least na\"ively.}
 \end{ex}
 
 \begin{ex}
 	More generally (but still for $R$ classical), consider an increasing union
 	\[
 		\begin{tikzcd}
-			\dots \rar & F_{(0)}^{-2} \rar \dar[hookrightarrow] & F_{(0)}^{-1} \rar \dar[hookrightarrow] & F_{(0)}^0 \rar \dar[hookrightarrow] & 0 \rar \dar[hookrightarrow] & \dots \\
-			\dots \rar & F_{(1)}^{-2} \rar \dar[hookrightarrow] & F_{(1)}^{-1} \rar \dar[hookrightarrow] & F_{(1)}^0 \rar \dar[hookrightarrow] & F_{(1)}^{1} \rar \dar[hookrightarrow] & \dots \\
+			\dots \rar & F_{(0)}^{-2} \rar \dar[hookrightarrow] & F_{(0)}^{-1} \rar \dar[hookrightarrow] & F_{(0)}^0 \rar \dar[hookrightarrow] & 0 \rar \dar[hookrightarrow] & \dots
+			\dots \rar & F_{(1)}^{-2} \rar \dar[hookrightarrow] & F_{(1)}^{-1} \rar \dar[hookrightarrow] & F_{(1)}^0 \rar \dar[hookrightarrow] & F_{(1)}^{1} \rar \dar[hookrightarrow] & \dots
 			\dots \rar & \dots \rar & \dots \rar & \dots \rar & \dots \rar & \dots
 		\end{tikzcd}
 	\]

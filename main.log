@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.7) (preloaded format=pdflatex 2022.9.8)  26 JUN 2023 21:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.7) (preloaded format=pdflatex 2022.9.8)  26 JUN 2023 21:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -860,8 +860,14 @@ U/zeur/m/n/10 F\U/zeus/m/n/10 ¨\U/zeur/m/n/10 X\U/zeus/m/n/10 © [] [][]¨\U/zeur
  []
 
 [4] [5] (main.aux)
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 2907BCF5B7DD891F255671C6361C2182;1698.
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: 367251ABF1190A5BEDC0F00F29068457;1885
+(rerunfilecheck)             After:  FF076A8016C55C9299095CA68D62ECB0;1896.
  ) 
 Here is how much of TeX's memory you used:
  24394 strings out of 478338
@@ -870,7 +876,7 @@ Here is how much of TeX's memory you used:
  42187 multiletter control sequences out of 15000+600000
  483450 words of font info for 82 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 130i,15n,132p,438b,1078s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 130i,15n,132p,468b,1078s stack positions out of 10000i,1000n,20000p,200000b,80000s
  <C:\Users\erudi\AppData\Local\MiKTeX\fonts/pk/ljfour/public/bbm/dpi600\bbm10
 .pk><C:/Users/erudi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
 m/cmb10.pfb><C:/Users/erudi/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
@@ -900,7 +906,7 @@ grams/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/erudi/App
 Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam7.pfb><C:/Us
 ers/erudi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msb
 m10.pfb>
-Output written on main.pdf (5 pages, 268293 bytes).
+Output written on main.pdf (5 pages, 269963 bytes).
 PDF statistics:
  243 PDF objects out of 1000 (max. 8388607)
  56 named destinations out of 1000 (max. 500000)
