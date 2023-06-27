@@ -1,0 +1,278 @@
+\documentclass{amsart}
+
+\usepackage{notes}
+
+\title{DAG Notes}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Lecture 1, 6/26 (D. Arinkin) -- DG-Categories}
+
+Arinkin's lectures aim to treat DG-categories as they are used in practice (without completely ignoring the foundations).
+More focus will be given to the ``key parts'' of the theory than to technicalities.
+We will treat foundations and geometrically-flavored examples (e.g. $\QCoh$ from a DG-perspective).
+
+\subsection{Motivation}
+
+In classical algebra and algebraic geometry, we like to consider modules over a ring.
+We pass to resolutions to get things which behave better from a homological perspective.
+This leads to considering derived categories.
+What kind of objects are derived categories?
+
+\begin{enumerate}
+\item Derived categories are \emph{triangulated categories}.
+This means that they are equipped with a notion of \emph{distinguished triangles} (also called \emph{exact triangles}), which capture the notion of mapping cones.
+However, this structure can be poorly behaved.
+\item Derived categories are \emph{DG-categories}, or (mostly equivalently) \emph{stable $\infty$-categories}.
+Arinkin considers the DG category perspective to be more concrete.
+Using this perspective changes something fundamental about the category (what we obtain is more complex than a typical $1$-category).
+However, DG categories can be more robust, especially when considering the ``category of DG-categories.''
+\end{enumerate}
+
+\subsection{DG-categories and examples}
+
+Fix a field $k$ (often we can get away with working over a commutative ring, but this may require more caution).
+Let $\Csf(k)$ be the monoidal category of complexes of $k$-vector spaces, equipped with the tensor product $\otimes_k$ as monoidal structure.
+
+\begin{dfn}
+A \emph{DG-category} $\Asf$ consists of 
+\begin{enumerate}
+	\item A collection of objects $\Ob \Asf$
+	\item For all $x, y \in \Ob \Asf$, a chain complex of morphisms $\Hom_{\Asf}(x, y) \in \Ob \Csf(k)$
+	\item For all $x, y, z \in \Ob \Asf$, a composition law $\circ: \Hom_{\Asf}(x, y) \otimes \Hom_{\Asf}(y, z) \to \Hom_{\Asf}(x, z)$
+\end{enumerate}
+such that
+\begin{enumerate}
+	\item Composition is associative.
+	\item Composition is unital: for all $x \in \Asf$, there exists a degree-zero cycle $\onebb_x \in \Hom_{\Asf}(x, x)$ (so $d(\onebb_x) = 0$) such that $\onebb_x \circ f = f$ and $g \circ \onebb_x = g$ for all $f, g$.
+\end{enumerate}
+\end{dfn}
+
+\begin{ex}
+We can consider the case where $\Hom(x, y)$ is always concentrated in degree zero.
+This recovers the notion of a $k$-linear category.
+\end{ex}
+
+\begin{ex}
+Let $R$ be a $k$-algebra.
+We can turn $C(R)$ (the category of complexes of $R$-modules) into a DG-category by setting
+\[
+\Hom(M^\bullet, N^\bullet)^p = \prod_{q} \Hom_R(M^p, N^{p+q})
+\]
+with differential $d_{\Hom} = [d, -]$.
+It is crucial here that we use the product rather than the direct sum (otherwise we run into issues when the complexes are not bounded).
+\end{ex}
+
+We can also construct some examples where the $\Hom$-complexes are standard complexes computing $\Ext$ groups.
+This ties into the classical perspective on homological algebra, where derived functors are computed using explicit resolutions.
+
+\begin{ex}
+Let $R$ be a $k$-algebra.
+We can define a DG-category $\Asf$ with $\Ob \Asf$ being $R$-modules and $\Hom_{\Asf}(M, N)$ being the standard complex computing $\Ext^\bullet(M, N)$ via the bar resolution.
+We will not spell out the details here because this is not our emphasis.
+\end{ex}
+
+\begin{ex}
+Let $k = \CC$, and fix a complex manifold $X$.
+We can define a DG-category $\Asf$ with objects being holomorphic vector bundles on $X$ and $\Hom_{\Asf}(E, F)$ given by the Dolbeault complex
+\[
+\begin{tikzcd}
+0 \rar & \Cc^\infty(E^* \otimes F) \rar["\ol{\partial}"] & \Omega^{0,1}(E^* \otimes F) \rar["\ol{\partial}"] & \dots
+\end{tikzcd}
+\]
+\end{ex}
+
+As stated above, our main examples of interest are really \emph{derived categories}.
+We still need to build up some more definitions to get a good understanding of these.
+
+\subsection{DG-Functors}
+
+One would like to have a good notion of functors between DG-categories.
+It turns out that the na\"ive definition of DG-functors works (and does not require homotopical corrections).
+
+\begin{dfn}
+A DG-functor $F: \Asf \to \Bsf$ consists of:
+\begin{enumerate}
+\item An assignment $F: \Ob \Asf \to \Ob \Bsf$
+\item For every $x, y \in \Ob \Asf$, a chain map $\Hom_\Asf(x, y) \to \Hom_\Bsf(F(x), F(y))$
+\end{enumerate}
+which preserves identities and composition.
+\end{dfn}
+
+\begin{rmk}
+While the obvious notion of a DG-functor works fine, subtleties arise when one considers the notion of equivalence.
+
+One can first define a notion of \emph{strict equivalence}.
+A DG-functor $F: \Asf \to \Bsf$ is a strict equivalence if
+\begin{enumerate}
+\item $F$ is strictly fully faithful: for all $x, y \in \Ob \Asf$, $\Hom_\Asf(x, y) \to \Hom_\Bsf(F(x), F(y))$ is an isomorphism.
+\item $F$ is strictly essentially surjective: for all $y \in \Ob \Bsf$, there exists $x \in \Ob \Asf$ such that $F(x)$ is isomorphic to $y$.
+\end{enumerate}
+As one knows from the study of derived categories, the notion of ``isomorphism'' here is often too strong - one would rather consider quasi-isomorphisms or other weaker notions.
+
+A better notion is that of \emph{quasi-equivalence}.
+A DG-functor $F: \Asf \to \Bsf$ is a quasi-equivalence if
+\begin{enumerate}
+	\item $F$ is quasi-fully faithful: for all $x, y \in \Ob \Asf$, $\Hom_\Asf(x, y) \to \Hom_\Bsf(F(x), F(y))$ is a quasi-isomorphism.
+	\item $F$ is quasi-essentially surjective: for all $y \in \Ob \Bsf$, there exists $x \in \Ob \Asf$ such that there exist maps $F(x) \to y$ and $y \to F(x)$ with the both compositions $F(x) \to F(x)$ and $y \to y$ homotopic to the relevant identities.
+\end{enumerate}
+\end{rmk}
+
+\begin{exer}
+For a DG-category $\Asf$, let $\Ho \Asf$ be the \emph{homotopy category} of $\Asf$, i.e.\ the $1$-category with the same objects as $\Asf$ and morphisms given by $\Hom_{\Ho \Asf}(x, y) = H^0(\Hom_{\Asf}(x, y))$.
+\begin{enumerate}
+\item Check that $\Ho \Asf$ is a well-defined $1$-category. (This uses the fact that the functor $H^0$ is lax monoidal.)
+\item Show that a DG-functor $F: \Asf \to \Bsf$ is quasi-essentially surjective if and only if $\Ho F: \Ho \Asf \to \Ho \Bsf$ is essentially surjective.
+\end{enumerate}
+\end{exer}
+
+\section{Lecture 2, 6/26 (B. Antieau) - }
+
+Antieau's lectures aim to treat the intuition and geometry behind DAG, without getting lost in the details.
+
+\subsection{``Bird's Eye View'' and Examples}
+
+We begin with a classical proposal of Serre.
+Let $X$ be a regular variety, with $W, Y \subset X$ and $W \subset Y$ being a finite set of points.
+We would like to count $W \cap Y$.
+In the case of transverse intersections, this is easy, but in general we have to count with multiplicity.
+If we move $W$ and $Y$ around, this count with multiplicity should not change.
+Serre proposed that the intersection multiplicity at a point $z \in W \cap Y$ is given by
+\[
+\sum_{i \geq 0} (-1)^i \length_{k(z)} \Tor^i(\Oc(X)_z)(\Oc(X)_z / I_z, \Oc(Y) / I_z).
+\]
+It is not immediately obvious why this is a reasonable definition, but it turns out to work well in good cases.
+One can show that (when working over a field) this intersection multiplicity is nonnegative.
+
+\begin{ex}
+Consider the intersection in $\AA^2$ of the curve $W = \{ y = x^2 \}$ with the $x$-axis $Y$.
+One can compute that the intersection multiplicity is $2$ (coming exclusively from $\Tor^0$).
+This makes sense: if we move the curves around, then we will get two actual intersection points.
+
+For the Tor computation, we note $\Oc(W) = k[x, y] / (y - x^2)$ and $\Oc(Y) = k[x, y] / (y)$.
+Then $\Oc(Y) \otimes_{\Oc(X)} \Oc(W) = k[x] / (x^2)$, and there are no higher Tor's.
+This can be interpreted geometrically using the common tangent vector to $W$ and $Y$ at the origin.
+\end{ex}
+
+\begin{ex}
+For the first historical example with higher $\Tor$s, we work in $\AA^4 = \Spec k[w, x, y, z]$.
+Let $Y$ be the union of planes $P_1 \cup P_2 = \{ x = y = 0 \} \cup \{ z = w = 0 \}$, and let $W$ be the plane $\{ x = z, y = w\}$.
+Then the $\Tor_0$ term is $3$-dimensional, but the ``correct'' intersection multiplicity should be $2$ (if we perturb $W$, it should meet each plane $P_i$ in a single point).
+Thus we must use the $\Tor^1$ term to correct our intersection multiplicity.
+\end{ex}
+
+The main idea of derived algebraic geometry is that we should understand intersection multiplicities geometrically by replacing $\Oc(Y) \otimes_{\Oc(X)} \Oc(W)$ by a \emph{derived commutative ring} $\Oc(Y) \otimes_{\Oc(X)}^\Lbf \Oc(W)$.
+In the affine case, ``$\Spec$'' of this should give the \emph{derived intersection} $Y \cap^\Lbf W = Y \times_X^\Lbf W$.
+We will of course need to make sense of what this means.
+
+Derived algebraic geometry also gives rise to interesting self-intersections, which we can use to understand what derived commutative rings and schemes should be.
+
+\begin{ex}
+Consider $\{0\} \subset \AA^1$, viewed as $\Spec$ of $k = k[x] / (x)$.
+The classical self-intersection is $\{0\} \cap \{0\} = \{0\}$.
+Note that this is not what we'd get if we moved the points (since two general points in $\AA^1$ do not meet).
+
+For the derived self-intersection, we have 
+\[
+\pi_i(k \otimes_{k[x]}^\Lbf k) = \begin{cases}
+	k & i = 0 \\
+	k & i = 1 \\
+	0 & i > 0.
+\end{cases}
+\]
+For derived commutative rings, we say $\pi_i = H_i = H^{-i}$.
+We can think of elements of $\pi_i$ for $i > 0$ as higher nilpotents / ``fuzz'' (in addition to the nilpotents that appear in $\pi_0$ when working scheme-theoretically).
+
+Recall that in classical geometry, for commutative $k$-algebras $R$ and $S$, we have
+\[
+\Hom_{\Sch_k}(\Spec S, \Spec R) = \Hom_{\CAlg_k}(R, S).
+\]
+Note that the right hand side of this is a set.
+For our example, we expect to have
+\[
+\Hom_{\dSch_k}(\{0\} \cap^\Lbf \{0\}, \AA^1) = \Oc(\{0\} \cap^\Lbf \{0\}) = k \otimes_{k[x]}^\Lbf k,
+\]
+which should be a ``space'' with $\pi_0 = \pi_1 = k$ (not just a set).
+
+Furthermore, instead of considering abelian categories of quasicoherent sheaves on $\{0\} \cap^\Lbf \{0\}$, it makes much more sense to consider derived categories of quasicoherent sheaves.
+One can still make sense of the abelian categories, but they don't see the interesting higher homotopy groups.
+\end{ex}
+
+Through considering this and other examples, we end up with some ideas about what ``derived replacements'' of concepts in classical algebraic geometry should be.
+
+\begin{center}
+	\begin{tabular}{c|c}
+		Classical AG & Derived AG \\ \hline
+		Commutative rings $R$ & Derived commutative rings $R$ \\
+		Affine schemes $\Spec R$ & Derived affine schemes $\Spec R$ \\
+		Sheaves of sets & Sheaves of homotopy types \\
+		Abelian categories $\QCoh(X)$ & DG-categories (or stable $\infty$-categories) $\Dsf_qc(X)$
+	\end{tabular}
+\end{center}
+
+\subsection{Presheaves and Yoneda}
+
+Let $\Csf$ be a category.
+Write $\Psh(\Csf)^\heartsuit = \Fun(\Csf\op, \Set)$ for the \emph{category of presheaves of sets} on $\Csf$.
+Objects of this category are functors $F: \Csf\op \to \Set$, and morphisms are natural transformations of functors.
+
+There is a natural \emph{Yoneda embedding} $h: \Csf \to \Psh(\Csf)^\heartsuit$, defined by $h(X) = h_X$, where $h_X(Y) = \Hom_\Csf(Y, X)$.
+
+\begin{lem}[Yoneda]
+\,
+\begin{enumerate}
+	\item The Yoneda embedding $h: \Csf \to \Psh(\Csf)^\heartsuit$ is fully faithful, i.e.\ $\Hom_\Csf(X, Y) \cong \Hom_{\Psh(\Csf)^\heartsuit}(h_X, h_Y)$ naturally in $X, Y$.
+	\item For any $F \in \Psh(\Csf)^\heartsuit$, there is a natural isomorphism $F(X) \cong \Hom_{\Psh(\Csf)^\heartsuit}(h_X, F)$.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+The first statement follows from the second by taking $F = h_Y$ in the second.
+To prove the second statement, we can construct explicit natural isomorphisms as follows.
+To get $\Hom_{\Psh(\Csf)^\heartsuit}(h_X, F) \to F(X)$, start with $f: h_X \to F$, and evaluate $f$ on $\id_X \in h_X(X)$ to get an element of $F(X)$.
+Conversely, given $g \in F(X)$, construct a natural fransformation $h_X \to F$ by sending $a \in h_X(Y) = \Hom_\Csf(Y, X)$ to $F(a)(g) \in F(Y)$.
+One can check that these are both natural and mutually inverse. 
+\end{proof}
+
+\begin{ex}
+Let $\Delta^1$ be the category with two objects $0, 1$ and one non-identity morphism $0 \to 1$.
+Then $\Psh(\Delta^1)^\heartsuit$ is the category of arrows in $\Set$.
+The functor $h_0$ corresponds to the arrow $\emptyset \to *$, and the functor $h_1$ corresponds to the arrow $* \to *$.
+\end{ex}
+
+\subsection{Topologies and Sheaves}
+
+\begin{dfn}
+A map $f: R \to S$ in $\CAlg_k$ is \emph{flat} if the functor $S \otimes_R (-): \Mod_R \to \Mod_S$ is exact.
+We say that $f$ is furthermore \emph{faithfully flat} if $S \otimes_R (-)$ is conservative (i.e.\ for $g: M \to N$, if $S \otimes g: S \otimes_R M \to S \otimes_R N$ is an isomorphism, then $g$ must have already been an isomorphism).
+\end{dfn}
+
+\begin{ex}
+\,
+\begin{enumerate}
+	\item For any $R$, the map $R \to 0$ is flat but not faithfully flat.
+	\item The map $\ZZ \to \QQ$ is flat but not faithfully flat.
+	\item Any field extension $K \to L$ is faithfully flat.
+	\item For $f, g \in R$ with $(f, g) = 1$, the map $R \to R[f\inv] \times R[g\inv]$ is faithfully flat.
+	Note that this gives a Zariski cover of $\Spec R$.
+\end{enumerate}
+\end{ex}
+
+Let $\Aff_k = \CAlg\op$ be the \emph{category of affine $k$-schemes}.
+We will define some topologies on $\Aff_k$.
+
+\begin{dfn}
+\,
+\begin{enumerate}
+	\item The \emph{fpqc topology} on $\Aff_k$ has coverings of $\Spec R$ generated by those of the form $\{ \Spec S_i \to \Spec R\}_{i \in I}$ where $I$ is finite, each $R \to S_i$ is flat, and $R \to \prod_i S_i$ is faithfully flat.\footnote{Note the ``generated by'' -- we allow infinite covers.}
+	\item For the \emph{fppf topology}, we require furthermore that each $S_i$ is of finite presentation over $R$ (i.e.\ $S_i = R[x_1, \dots, x_p] / (f_1, \dots, f_q)$ for some $x_i$ and $f_j$.)
+	\item For the \emph{\'etale topology}, we require furthermore that each $S_i$ is \'etale over $R$ (i.e.\ $S_i$ is smooth over $R$ with $\Omega^1_{S_i/R} = 0$).
+	\item For the \emph{Zariski topology}, we require furthermore that each $S_i$ is of the form $R[f\inv]$ for some $f \in R$.
+\end{enumerate}
+\end{dfn}
+
+
+\end{document}
