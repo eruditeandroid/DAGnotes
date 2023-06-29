@@ -24,6 +24,7 @@
 \DeclareMathOperator{\colim}{colim}
 \DeclareMathOperator{\cone}{cone}
 \DeclareMathOperator{\cyl}{cyl}
+\DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\Ext}{Ext}
 \DeclareMathOperator{\Gr}{Gr}
 \DeclareMathOperator{\GL}{GL}

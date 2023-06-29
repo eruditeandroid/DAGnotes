@@ -599,4 +599,276 @@ The term ``module'' will now be used for a (potentially unbounded) complex of $R
 	Every module admits a semi-free resolution.
 \end{prop}
 
+\section{Lecture 5, 6/28 (D. Arinkin) -- Modules}
+
+Last time, for a classical ring $R$, we defined the DG-category $\Csf(R)$ of chain complexes of $R$-modules.
+We further defined a subclass of ``semi-free'' objects in $\Csf(R)$.
+Our goal will be to examine these concepts for DG-rings and more generally DG-categories.
+
+\subsection{DG-Rings and their Modules}
+
+Let $R$ be a DG-ring.
+We can view the data of $R$ as:
+\begin{enumerate}
+	\item An underlying complex $R \in \Csf(k)$
+	\item A degree-zero multiplication map $\cdot: R \otimes_k R \to R$ such that:
+	\begin{enumerate}
+		\item The (graded) product rule holds:
+		\[
+			d(ab) = (da) b + (-1)^{|a|} a db,
+		\]
+		(or equivalently $\cdot$ is a chain map).
+		\item Multiplication is (strictly) associative.
+		\item Multiplication is (strictly) unital.
+	\end{enumerate}
+\end{enumerate}
+
+Given a DG-ring $R$, we can consider the category $\Csf(R)$ of \emph{DG-modules}(or \emph{modules} for short), i.e.\ chain complexes $M \in \Csf(k)$ equipped with a multiplication $R \otimes_k M \to M$ satisfying the usual module axioms together with a (graded) product rule.
+We can view $\Csf(R)$ as a DG-category where $(\Hom_R(M, N))^i$ is the vector space of $R$-linear maps $M \to N$ of degree $i$ (with no regard for the differentials on $M$ and $N$).
+The differential on $\Hom_R(M, N)^\bullet$ is given by the (graded) commutator $[d, -]$.
+Note that $\Hom_R(M, N)$ is naturally a subcomplex of the $\Hom$-complex $\Hom_k(M, N)$ defined in the first lecture.
+
+We can still make sense of the notion of freeness and semi-freeness in this context:
+
+\begin{dfn}
+	Let $R$ be a DG-ring and $M \in \Csf(R)$.
+	A \emph{free $R$-module} is an $R$-module strictly isomorphic to one of the form $\oplus_{n \in \ZZ} R[n]^{\oplus I_n}$.
+	A \emph{semi-free $R$-module} is an $R$-module of the form $M = \cup_{i=0}^\infty M_i$ where $M_0 \subset M_1 \subset \dots$ with each $M_i / M_{i-1}$ free.
+\end{dfn}
+
+If we ignore the differential $d$ (i.e.\ pretend that $R$ and $M$ both have $d = 0$), then semi-free modules are free: $M \cong \oplus_{i=0}^\infty M_i / M_{i-1}$.
+However, in general, $d$ has interesting upper triangular behavior.
+
+\begin{ex}
+	Suppose $M = M_1$ where $M_0 = R e_0$ and $M_1 / M_0 = R e_1$.
+	Then we can write $M \cong R \tilde{e_1} \oplus R e_0$ (ignoring differentials).
+	Here $d$ satisfies $d(e_0) = 0$ and $d(\tilde{e_1}) = s e_0$ for some $s \in R$.
+	It is a good exercise to find the conditions $s$ must satisfy for this to give a well-defined module.
+\end{ex}
+
+As one sees from this example, semi-free modules can be constructed inductively.
+One can take these notions further and define ``twisted complexes.''
+
+\subsection{Modules over DG-categories}
+
+Recall that we can view a DG-ring $R$ as a DG-category with one object (say $*$ with $\End(*) = R$).
+From this viewpoint, a right DG-module over $R$ is a contravariant DG-functor from the corresponding category to $\Csf(k)$.\footnote{The subtleties about covariance / contravariance and left / right cannot be avoided entirely.}
+The free $R$-module $R \cdot 1$ is given by the representable functor $h_*$. 
+The nice thing about this viewpoint is that the Yoneda embedding lets us start with a single free module and obtain all other modules as suitable colimits.
+
+We can generalize this to talk about modules over a DG-category.
+
+\begin{dfn}
+	Let $\Asf$ be a DG-category.
+	The \emph{DG-category of left $\Asf$-modules} $\Csf(\Asf)$ is given by $\Fun\dg(\Asf, \Csf(k))$.
+	Here $\Hom_\Asf(M, N)$ is the complex of maps of functors $M \to N$ (not respecting the differential), with differential given by the (graded) commutator $[d, -]$.
+	Right $\Asf$-modules are defined similarly, starting from $\Asf\op$.
+
+	Taking $0$-cycles in $\Hom$-complexes gives $Z^0(\Csf(\Asf))$, the ``original'' category of DG-functors from $\Asf$ to $\Csf$.
+	Morphisms in $Z^0(\Csf(\Asf))$ are genuine chain maps.
+	We can also consider the homotopy category $\Ho \Csf(\Asf) = H^0(\Csf(\Asf)) = |\Csf(\Asf)|$.
+\end{dfn}
+
+One can think of a left $\Asf$-module $M$ as a collection of complexes $M(x)$ for $x \in \Asf$ together with maps $M(x) \to M(y)$ for every map $x \to y$ in $\Asf$ (respecting the unit and composition).
+If $A$ is small, one can think of $M$ as a labeled diagram.
+
+\begin{dfn}
+	A basic free $\Asf$-module\footnote{This terminology is made up.} is given by a (co)representable functor $h_x = \Hom(x, -)$ for $x \in \Asf$.
+	A general \emph{free $\Asf$-module} is a direct sum of shifts of basic free modules $h_{x_i}$ (for $x_i \in \Asf$).
+	\emph{Semi-free $\Asf$-modules} are defined in the same way as before (i.e.\ as countable increasing unions of $\Asf$-modules with all relevant subquotients free). 
+\end{dfn}
+
+Note that if $M = \oplus_i h_{x_i}[d_i]$, then we can understand $M(a)$ concretely for any $a$:
+\[
+M(a) = \oplus_i \Hom(x_i, a)[d_i].
+\]
+
+\section{Lecture 6, 6/28 (B. Antieau) -- ???}
+
+\subsection{More on $\infty$-categories}
+
+Recall that an $\infty$-category is a weak Kan complex, i.e.\ a simplicial set satisfying an inner horn filling condition.
+We can think of this as follows:
+\begin{enumerate}
+	\item $0$-simplices are objects.
+	\item $1$-simplices are morphisms.
+	\item $2$-simplices are homotopies / witnesses to composition.
+	\item $3$-simplices homotopies between homotopies, etc.
+\end{enumerate}
+
+Here's another viewpoint.
+Let $\Csf$ be an $\infty$-category.
+For any $x, y \in \Csf$, we can define a Kan complex $\Map^R_\Csf(x, y)$ together with composition maps
+\[
+	\circ: \Map^R(x, y) \times \Map^R(y, z) \to \Map^R(x, z)
+\]
+which are defined, associative, unital, etc.\ all up to homotopy.
+So $\infty$-categories are ``categories enriched in Kan complexes'' in a suitable sense.
+
+A functor of $\infty$-categories is a just a map of the associated simplicial sets.
+However, this can be hard to specify directly (since we need to declare where simplices at all levels go).
+This happens even if we are considering maps $\Nsf(\Csf) \to \Dsf$, where $\Nsf(\Csf)$ is the nerve of a $1$-category and $\Dsf$ is an $\infty$-category.
+
+\subsection{The $\infty$-category of spaces}
+
+Let $\Spaces$ be the $\infty$-category of \emph{spaces} (or \emph{anima}, if you're hip).
+The idea is that $\Spaces$ is to $\Cat_\infty$ as $\Set$ is to $\Cat_1$.
+One can construct $\Spaces$ as follows.
+
+Let $\Cat_\Delta$ be the category of \emph{simplicial categories} (i.e.\ categories enriched in simplicial sets).
+In a simplicial category $\Csf$, morphisms form simplicial sets $\Map_\Csf(x, y)$, and composition, units, etc. are defined so that all identities hold on the nose.
+
+There exists a \emph{homotopy-coherent nerve functor} $\Nsf_\bullet\hc: \Cat_\Delta \to \sSet$ given by $\Nsf_n\hc(\Csf) = \Hom_{\Cat_\Delta}(\tilde{[n]}, \Csf)$ (details including a definition of $\tilde{[n]}$ can be found in Kerodon or HTT).
+If $\Map_\Csf(x, y)$ is a Kan complex for all $x, y \in \Csf$, then $\Nsf_\bullet\hc(\Csf)$ is an $\infty$ category, and we have a natural equivalence
+\[
+	\Map_\Csf(x, y) \simeq \Map_{\Nsf_\bullet\hc(\Csf)}^R(x, y).
+\]
+Recall that an equivalence of simplicial sets is just a (weak) homotopy equivalence of their geometric realizations.
+
+\begin{dfn}
+	The $\infty$-category of spaces $\Spaces$ is $\Nsf_\bullet\hc(\Kan)$, where $\Kan$ is the simplicial category of Kan complexes.
+\end{dfn}
+
+\begin{rmk}
+	\,
+	\begin{enumerate}
+		\item Like $\Set$, $\Spaces$ has all (homotopy) limits and colimits.
+			Recall that homotopy limits and colimits are computed using fibrant / cofibrant replacements, much like how we use projective / injective resolutions in derived categories.
+		\item A functor of $\infty$-categories $F: \Csf \to \Dsf$ is fully faithful if, for all $x, y \in \Csf$, the induced map $\Map_\Csf(x, y) \to \Map_\Dsf(F(x), F(y))$ is an equivalence in $\Spaces$.\footnote{Here we write $\Map$ for the object of $\Spaces$ corresponding to the simplicial set $\Map^R$.}
+			Such an $F$ is an equivalence if furthermore every $z \in \Dsf$ is equivalent to $F(x)$ for some $x \in \Csf$.
+		\item We can view $\Spaces$ as obtained by inverting weak equivalences in $\Kan$ as an $\infty$-category (if we invert weak equivalences as a $1$-category, we just get $\Ho(\Spaces)$).
+	\end{enumerate}
+\end{rmk}
+
+\subsection{Limits and Colimits}
+
+Omitted for time...
+
+\subsection{Model Categories}
+
+\begin{dfn}
+	A \emph{model category} is a category $\Csf$ with three distinguished classes of morphisms: \emph{weak equivalences} $W$, \emph{fibrations} $F$, and \emph{cofibrations} $C$, all closed under composition.
+	From these we also get two more classes: \emph{trivial fibrations} $W \cap F$ and \emph{trivial cofibrations} $W \cap C$.
+	These are required to satisfy the following axioms:
+	\begin{enumerate}
+		\item $\Csf$ has all limits and colimits.
+		\item $W$ has a two-out-of-three property (if any two of $f$, $g$, and $g \circ f$ are in $W$, then the third is also in $W$).
+		\item $W$, $F$, and $C$ are closed under retracts.
+			(In particular they contain all isomorphisms.)
+		\item In the following diagram
+			\[
+				\begin{tikzcd}
+					A \rar \dar["i"] & X \dar["p"] \\
+					B \rar \uar[dashed] & Y,
+				\end{tikzcd}
+			\]
+			if $i$ is a cofibration and $p$ is a trivial fibration, or $i$ is a trivial cofibration and $p$ is a fibration, then the dashed lift exists.
+		\item Every $f: X \to Y$ in $\Csf$ factorizes as a cofibration followed by a trivial fibration, and also as a trivial cofibration followed by a fibration.
+	\end{enumerate}
+	In fact, it suffices to define $W$ and $C$ (resp.\ $W$ and $F$), as the missing class of maps can be recovered as the class for which the lifting property of the fourth axiom holds.
+	
+	We say an object $X \in \Csf$ is fibrant (resp.\ cofibrant) if the map from $X$ to the final object is a fibration (resp.\ the map from the initial object to $X$ is a cofibration).
+\end{dfn}
+
+Model categories give a nice theory of ``inverting at weak equivalences.''
+Furthermore, model categories provide notions of (left and right) homotopy.
+
+\begin{dfn}
+	Consider the ``fold map'' $X \sqcup X \to X$, and factorize this as a cofibration $X \sqcup X \to X \times I$ followed by a trivial fibration $X \times I \to X$.
+	Here $X \times I$ is notation -- not a literal product of $X$ with an interval (though this is the intuition).
+	We say that maps $f, g: X \to Y$ are left homotopic, written $f \sim^\ell g$, if $f \sqcup g: X \sqcup X \to Y$ factors through $X \sqcup X \to X \times I$.
+\end{dfn}
+
+If $X$ is cofibrant, then $\sim^\ell$ is an equivalence relation on $\Hom_\Csf(X, Y)$ for all $Y \in \Csf$.
+We define $\pi_\ell(X, Y) = \Hom_\Csf(X, Y) / \sim^\ell$.
+We can similarly define a notion of right homotopy $\sim^r$, which gives an equivalence relation on $\Hom_\Csf(X, Y)$ (and hence a definition of $\pi_r(X, Y)$) when $Y$ is fibrant.
+When $X$ is cofibrant and $Y$ is cofibrant, these notions coincide, and we let $\pi(X, Y) = \pi_r(X, Y) = \pi_\ell(X, Y)$.
+
+Let $\Csf\cf$ be the set of objects of $\Csf$ which are both fibrant and cofibrant.
+We can make this into a category with $\Hom_{\Csf\cf}(X, Y) = \pi(X, Y)$.
+This gives a construction of $\Csf[W\inv]$, i.e.\ $\Csf[W\inv] = \Csf\cf$.
+
+\begin{dfn}
+	An adjunction of model categories $F: \Csf \rightleftarrows \Dsf : G$ is a Quillen adjunction if it satisfies the following equivalent conditions:
+	\begin{enumerate}
+		\item $F$ preserves $C$ and $W \cap C$, or
+		\item $G$ preserves $F$ and $W \cap F$, or
+		\item $F$ preserves $C$ and $G$ preserves $F$, or
+		\item $F$ preserves $W \cap C$ and $G$ preserves $W \cap F$.
+	\end{enumerate}
+\end{dfn}
+
+For a Quillen equivalence, we can define a left derived functor $\Lbf F$ by setting $\Lbf F(Y)$ to be $F$ evaluated on a cofibrant replacement of $Y$.
+
+\subsection{Flavors of derived commutative rings}
+
+One category of ``derived commutative rings'' is given by $\CDga_{\QQ,\geq 0}$, the category of connective (i.e.\ homologically non-negatively graded) CDGAs.
+We say that a map $f: A_\bullet \to B_\bullet$ is an equivalence if it is a quasi-isomorphism of complexes.
+
+One can show that $\CDga_{\QQ, \geq 0}$ has a model category structure with
+\begin{enumerate}
+	\item $W$ is equivalences (i.e.\ quasi-isomorphisms).
+	\item $F$ is the class of degreewise surjections $A_\bullet \to B_\bullet$.
+	\item $C$ is determined by $W$ and $F$.
+\end{enumerate}
+In this model category structure, all objects are fibrant (the map to the zero CDGA is always a levelwise surjection).
+
+Why are we restricting to nonnegatively graded CDGAs?
+The positive homotopy / homology groups should capture ``nilpotence'' in derived algebraic geometry.
+By contrast, negative homotopy / homology groups capture stacky behavior.
+Another problem is that quasicoherent sheaf theory is poorly understood in the non-connective case.
+
+\begin{dfn}
+	Let $\DAlg_\QQ\cn$ be the $\infty$-category associated to $\CDga_{\QQ, \geq 0}$.
+	(To construct this, one would like a simplicial model structure on $\CDga_{\QQ, \geq 0}$, but this does not seem to appear directly in the literature.
+	Indirect approaches are possible.
+\end{dfn}
+
+There exists an adjunction $\DAlg_\QQ\cn \leftrightarrows \CAlg_\QQ$, where the top map is given by $A_\bullet \mapsto H_0(A) = \pi_0(A)$.
+This lets us reduce some questions about a connective CDGA to questions about an ordinary commutative ring.
+It is not clear what a useful analogue of this would be for non-connective CDGAs.
+
+\begin{ex}
+	There exists a Quillen adjunction 
+	\[
+		\Sym_\QQ: \Ch_{\geq 0}(\QQ) \leftrightarrows \CDga_{\QQ, \geq 0}: \textrm{forget}.
+	\]
+
+	(The model structure on $\Ch_{\geq 0}(\QQ)$ is defined with the same conditions used for $\CDga_{\QQ, \geq 0}$, and every object in $\Ch_{\geq 0}(\QQ)$ is fibrant and cofibrant.)
+	This adjunction yields an adjunction of $\infty$-categories 
+	\[
+		\Sym_\QQ: \Dsf_{\geq 0}(\QQ) \leftrightarrows \DAlg_\QQ\cn: \textrm{forget}.
+	\]
+	One can compute the image of $\Sym_\QQ$ explicitly:
+	\[
+		\Sym_\QQ(\QQ[n]) \simeq 
+		\begin{cases}
+			\QQ[x_n] & n \textrm{ even} \\
+			\QQ[x_n] / (x_n^2) & n \textrm{ odd,}
+		\end{cases}
+	\]
+	where the differentials are trivial in both cases.
+
+	Furthermore, we have
+	\[
+		\Map_{\DAlg_\QQ\cn}(\Sym_\QQ(\QQ[n], A) \simeq \Map_{\Dsf_{\geq 0}(\QQ)}(\QQ[n], A) \simeq \Map_{\Dsf_{\geq 0}(\QQ)}(\QQ, A[-n]).
+	\]
+	Thus
+	\[
+		\pi_i(\Map_{\DAlg_\QQ\cn}(\Sym_\QQ(\QQ[n], A)) \cong \pi_i(\Map_{\Dsf_{\geq 0}(\QQ)}(\QQ, A[-n])) \cong
+		\begin{cases}
+			0 & i < 0 \\
+			\pi_{i+n}(A) = H_{i+n}(A) & i \geq 0.
+		\end{cases}
+	\]
+\end{ex}
+
+\begin{ex}
+	We can also try to understand quotients of symmetric CDGAs.
+	Say we want to construct something that behaves like $\QQ[x_{2n}] / (x_{2n}^2)$.
+	The na\"ive construction produces an object which is not cofibrant.
+	It is better to instead consider the homotopy pushout $A = \QQ[x_{2n}] \otimes_{\QQ[x_{4n}]} (\QQ[x_{4n}] \otimes \bigwedge_\QQ (y_{4n+1})$, where in the latter tensor factor we set $d(y_{4n+1}) = x_{4n}$.
+	We end up with $A \cong \QQ[x_{2n}] \otimes \bigwedge_\QQ(y_{4n+1})$, with $d(y_{4n+1}) = x_{2n}^2$.
+\end{ex}
+
 \end{document}
