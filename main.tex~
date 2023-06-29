@@ -800,15 +800,15 @@ This gives a construction of $\Csf[W\inv]$, i.e.\ $\Csf[W\inv] = \Csf\cf$.
 
 For a Quillen equivalence, we can define a left derived functor $\Lbf F$ by setting $\Lbf F(Y)$ to be $F$ evaluated on a cofibrant replacement of $Y$.
 
-\subsection{Flavors of derived commutative rings}
+\subsection{CDGAs}
 
-One category of ``derived commutative rings'' is given by $\Cdga_{\QQ,\geq 0}$, the category of connective (i.e.\ homologically non-negatively graded) CDGAs.
+One category of ``derived commutative rings'' is given by $\CDga_{\QQ,\geq 0}$, the category of connective (i.e.\ homologically non-negatively graded) CDGAs.
 We say that a map $f: A_\bullet \to B_\bullet$ is an equivalence if it is a quasi-isomorphism of complexes.
 
-One can show that $\Cdga_{\QQ, \geq 0}$ has a model category structure with
+One can show that $\CDga_{\QQ, \geq 0}$ has a model category structure with
 \begin{enumerate}
 	\item $W$ is equivalences (i.e.\ quasi-isomorphisms).
-	\item $F$ is the class of degreewise surjections $A_\bullet \to B_\bullet$.
+	\item $F$ is the class of $A_\bullet \to B_\bullet$ which are degreewise surjections in positive degrees (not necessarily $0$).
 	\item $C$ is determined by $W$ and $F$.
 \end{enumerate}
 In this model category structure, all objects are fibrant (the map to the zero CDGA is always a levelwise surjection).
@@ -819,25 +819,24 @@ By contrast, negative homotopy / homology groups capture stacky behavior.
 Another problem is that quasicoherent sheaf theory is poorly understood in the non-connective case.
 
 \begin{dfn}
-	Let $\Dalg_\QQ\cn$ be the $\infty$-category associated to $\Cdga_{\QQ, \geq 0}$.
-	(To construct this, one would like a simplicial model structure on $\Cdga_{\QQ, \geq 0}$, but this does not seem to appear directly in the literature.
-	Indirect approaches are possible.
+	Let $\DAlg_\QQ\cn$ be the $\infty$-category associated to $\CDga_{\QQ, \geq 0}$.\footnote{To construct this, one would like a simplicial model structure on $\CDga_{\QQ, \geq 0}$, but this does not seem to appear directly in the literature.
+	Indirect approaches are possible.}
 \end{dfn}
 
-There exists an adjunction $\Dalg_\QQ\cn \leftrightarrows \Calg_\QQ$, where the top map is given by $A_\bullet \mapsto H_0(A) = \pi_0(A)$.
+There exists an adjunction $\DAlg_\QQ\cn \leftrightarrows \CAlg_\QQ$, where the top map is given by $A_\bullet \mapsto H_0(A) = \pi_0(A)$.
 This lets us reduce some questions about a connective CDGA to questions about an ordinary commutative ring.
 It is not clear what a useful analogue of this would be for non-connective CDGAs.
 
 \begin{ex}
 	There exists a Quillen adjunction 
 	\[
-		\Sym_\QQ: \Ch_{\geq 0}(\QQ) \leftrightarrows \Cdga_{\QQ, \geq 0}: \textrm{forget}$.
+		\Sym_\QQ: \Ch_{\geq 0}(\QQ) \leftrightarrows \CDga_{\QQ, \geq 0}: \textrm{forget}.
 	\]
 
-	(The model structure on $\Ch_{\geq 0}(\QQ)$ is defined with the same conditions used on $\Cdga_{\QQ, \geq 0}$, and every object in $\Ch_{\geq 0}(\QQ)$ is fibrant and cofibrant.)
+	(The model structure on $\Ch_{\geq 0}(\QQ)$ is defined with the same conditions used for $\CDga_{\QQ, \geq 0}$, and every object in $\Ch_{\geq 0}(\QQ)$ is fibrant and cofibrant.)
 	This adjunction yields an adjunction of $\infty$-categories 
 	\[
-		\Sym_\QQ: \Dsf_{\geq 0}(\QQ) \leftrightarrows \Dalg_\QQ\cn: \textrm{forget}.
+		\Sym_\QQ: \Dsf_{\geq 0}(\QQ) \leftrightarrows \DAlg_\QQ\cn: \textrm{forget}.
 	\]
 	One can compute the image of $\Sym_\QQ$ explicitly:
 	\[
@@ -851,14 +850,14 @@ It is not clear what a useful analogue of this would be for non-connective CDGAs
 
 	Furthermore, we have
 	\[
-		\Map_{\Dalg_\QQ\cn}(\Sym_\QQ(\QQ[n], A) \simeq \Map_{\Dsf_{\geq 0}(\QQ)}(\QQ[n], A) \simeq \Map_{\Dsf_{\geq 0}(\QQ)}(\QQ, A[-n]).
+		\Map_{\DAlg_\QQ\cn}(\Sym_\QQ(\QQ[n], A) \simeq \Map_{\Dsf_{\geq 0}(\QQ)}(\QQ[n], A) \simeq \Map_{\Dsf_{\geq 0}(\QQ)}(\QQ, \tau_{\geq 0} A[-n]).
 	\]
 	Thus
 	\[
-		\pi_i(\Map_{\Dalg_\QQ\cn}(\Sym_\QQ(\QQ[n], A)) \cong \pi_i(\Map_{\Dsf_{\geq 0}(\QQ)}(\QQ, A[-n])) \cong
+		\pi_i(\Map_{\DAlg_\QQ\cn}(\Sym_\QQ(\QQ[n], A)) \cong \pi_i(\Map_{\Dsf_{\geq 0}(\QQ)}(\QQ, \tau_{\geq 0} A[-n])) \cong
 		\begin{cases}
 			0 & i < 0 \\
-			\pi_{i+n}(A) = H_{i+n}(A) & i \geq 0.
+			\pi_{i-n}(A) = H_{i-n}(A) & i \geq 0.
 		\end{cases}
 	\]
 \end{ex}
@@ -867,8 +866,204 @@ It is not clear what a useful analogue of this would be for non-connective CDGAs
 	We can also try to understand quotients of symmetric CDGAs.
 	Say we want to construct something that behaves like $\QQ[x_{2n}] / (x_{2n}^2)$.
 	The na\"ive construction produces an object which is not cofibrant.
-	It is better to instead consider the homotopy pushout $A = \QQ[x_{2n}] \otimes_{\QQ[x_{4n}]} (\QQ[x_{4n}] \otimes \Wedge_\QQ (y_{4n+1})$, where in the latter tensor factor we set $d(y_{4n+1}) = x_{4n}$.
-	We end up with $A \cong \QQ[x_{2n}] \otimes \Wedge_\QQ(y_{4n+1})$, with $d(y_{4n+1}) = x_{2n}^2$.
+	It is better to instead consider the homotopy pushout $A = \QQ[x_{2n}] \otimes_{\QQ[x_{4n}]} (\QQ[x_{4n}] \otimes \bigwedge_\QQ (y_{4n+1})$, where in the latter tensor factor we set $d(y_{4n+1}) = x_{4n}$.
+	We end up with $A \cong \QQ[x_{2n}] \otimes \bigwedge_\QQ(y_{4n+1})$, with $d(y_{4n+1}) = x_{2n}^2$.
 \end{ex}
+
+\section{Lecture 7, 6/29 (B. Antieau) -- Construction of $\infty$-Categories and More Derived Commutative Rings}
+
+\subsection{Bootstrapping}
+
+To clarify some points that may have been confusing in the last lecture, we will discuss some of the ``bootstrapping'' processes we use in the study of $\infty$-categories.
+
+Consider the $1$-categories $\sSet$ (of simplicial sets) and $\Cat_\Delta$ (of simplicial categories).
+Both of these are model categories:
+\begin{itemize}
+	\item In the Joyal model structure on $\sSet$, $W$ consists of ``categorical equivalences'' (arising from the following Quillen adjunction) and $C$ consists of monomorphisms.\footnote{Last time, we considered the Quillen model structure, where $W$ consists of $f$ such that the geometric realization $|f|$ is a weak homotopy equivalence.}
+	\item In the model structure on $\Cat_\Delta$, $W$ consists of $\sSet$-enriched equivalences, i.e.\ $F: \Csf \to \Dsf$ such that $\abs{\Map_\Csf(x, y)} \to \abs{\Map_\Dsf(F(x), F(y))}$ is a weak homotopy equivalence for all $x, y$, and $F$ is essentially surjective up to $\simeq$.
+\end{itemize}
+We have a Quillen adjunction 
+\[
+	\Path[-]: \sSet \leftrightarrow \Cat_\Delta :\Nhc(-).
+\]
+
+Note that maps of simplicial sets naturally form a simplicial set:
+\[
+	\Map_\sSet(X_\bullet, Y_\bullet)_n = \Hom_\sSet(X_\bullet \times \Delta^n, Y_\bullet).
+\]
+If $X_\bullet$ and $Y_\bullet$ are $\infty$-categories, then $\Map_\sSet(X_\bullet, Y_\bullet)$ is an $\infty$-category.
+
+Let $\WKan$ be the simplicial category with objects weak Kan complexes and morphisms given by the maximal sub-Kan complex of $\Map_\sSet(X_\bullet, Y_\bullet)$.
+Then we can define $\Cat_\infty$, the \emph{$\infty$-category of $\infty$-categories} as
+\[
+	\Cat_\infty = \Nhc(\WKan).
+\]
+Note that this construction loses information: we'd really rather have an $(\infty, 2)$-category of $(\infty, 1)$-categories, but this would require a good theory of $(\infty, 2)$-categories.
+
+Another approach to bootstrapping $\infty$-categories is as follows.
+Suppose we have a ``simplicial model category'' $\Msf$ -- this implies in particular that the simplicial enrichment on the full subcategory $\Msf\cf$ of fibrant-cofibrant objects is actually an enrichment in Kan complexes.
+Then $\Nhc(\Msf\cf)$ is an $\infty$-category.
+
+For a general model category $\Msf$, we can construct a ``hammock localization'' $L^H \Msf$, which is a simplicial category.
+We can furthermore apply a functor $\Ex\infty$ which turns simplicial categories into categories enriched in Kan complexes.
+Applying $\Nhc$ gives an $\infty$-category $\Nhc(\Ex^\infty(L^H \Msf))$.
+More details can be found in a paper of Dwyer and Kan.
+
+A third approach involves starting with a category $\Msf$ with a notion of weak equivalences $W$ and constructing an $\infty$-category $\Nsf_\bullet(\Msf)[W\inv]$ satisfying the expected universal property of localization in $\infty$-categories.
+
+A final approach works for DG-categories.
+Starting from a DG-category $\Csf$, Lurie gives a direct construction of the DG-nerve $\Ndg(\Csf)$, which is an $\infty$-category.
+Alternatively, using Dold-Kan (and systematically using good truncations), we can convert $\Csf$ into a simplicially enriched category and instead construct $\Nhc(\Csf)$.
+There is a natural map $\Nhc(\Csf) \to \Ndg(\Csf)$, which Lurie shows is a trivial fibration.
+The resulting $\infty$-category will be stable if $\Csf$ is pre-triangulated.
+
+\subsection{More on derived commutative rings}
+
+Recall some relevant model categories:
+\begin{itemize}
+	\item $\CDga_{\QQ,\geq 0}$ has $W$ consisting of qisos and $F$ consisting of degreewise surjections in positive degrees. 
+		The corresponding $\infty$-category is $\DAlg_\QQ\cn$.
+	\item $\Ch_{\geq 0}(\QQ)$ has $W$ consisting of qisos, $F$ consisting of degreewise surjections in positive degrees, and $C$ consisting of degreewise injections.
+		The corresponding $\infty$-category is $\Dsf(\QQ)_{\geq 0}$.
+	\item $\Ch(\QQ)$ has $W$ consisting of qisos, $F$ consisting of degreewise surjections, and $C$ consisting of degreewise injections.
+		The corresponding $\infty$-category is $\Dsf(\QQ)$.
+\end{itemize}
+
+\begin{ex}
+	Why are we working over $\QQ$?
+	The answer is that strange and undesirable phenomena can occur if we work na\"ively over $\ZZ$.
+	Considering the chain complex $A_\bullet$ given by
+	\[
+		\begin{tikzcd}
+			\dots & 0 \lar & \ZZ \lar & \ZZ \lar["\id"] & 0 \lar & \dots \lar
+		\end{tikzcd}
+	\]
+	with $\ZZ$'s appearing in degree $1$ and $2$
+	Then $\Sym_\ZZ^{\CDga}(A_\bullet) = \ZZ[x] \otimes \ZZ[y] / (2y^2)$ with $dx = y$ and $dy = 0$.
+	In particular $d(x^n) = n x^{n-1} y$, and since $n$ is not invertible, we obtain $H_{2n-1} \cong \ZZ / n$.
+	But the chain complex we started with is acyclic and cofibrant, so we would hope to get a ``symmetric algebra'' which is also acyclic.
+	This example shows that there is no model structure on $\CDga_{\ZZ, \geq 0}$ such that the usual monadic adjunction $\Ch_{\geq 0}(\ZZ) \leftrightarrow \CDga_{\ZZ, \geq 0}$ is a Quillen adjunction.
+\end{ex}
+
+How can we make things work over $\ZZ$?
+
+\subsection{Animated (simplicial) commutative rings}
+
+When working over $\ZZ$, we instead consider $\ssf\CAlg_\ZZ$, the category of simplicial commutative rings, equipped with a model structure where $W$ and $F$ are as in the Quillen model structure on the underlying simplicial sets.
+(This definition makes sense over any commutative ring $R$.)
+We will write $\DAlg_R\cn$ for the $\infty$-category obtained by localizing $\ssf\CAlg_R$ at weak equivalences.
+For $R = \QQ$, this yields an $\infty$-category equivalent to the one constructed earlier.
+
+The usual ``free algebra / abelian group'' monadic adjunctions extend to Quillen adjunctions between $\sSet$, $\ssf\Ab$, and $\ssf\CAlg_R$.
+When working with the corresponding $\infty$-categories, we consider the corresponding derived functors.
+
+\begin{ex}
+	\begin{enumerate}
+		\item $\pi_\bullet \Lbf \Sym (\ZZ[0]) = \ZZ[x]$ with $|x| = 0$.
+		\item $\pi_\bullet \Lbf \Sym (\ZZ[1]) = \bigwedge_\ZZ(y) = \ZZ[y] / y^2$ with $|y| = 1$.
+		\item $\pi_\bullet \Lbf \Sym (\ZZ[2]) = \Gamma_{\mathrm{pd}(z)}$, the divided power algebra in $\QQ[z]$ spanned over $\ZZ$ by the elements $z^n / n!$.
+			Here $|z| = 2$.
+	\end{enumerate}
+\end{ex}
+
+The complexity of $\Lbf \Sym$ can be understood from the following Lemma.
+
+\begin{lem}
+	For $n \geq 2$, we have $\Lbf \Sym (\ZZ[n]) = C_\bullet(K(\ZZ, n), \ZZ)$.
+\end{lem}
+
+This can be proved using the bar resolution (for $K(\ZZ, n) = \pt / K(\ZZ, n-1)$) and the equivalence
+\[
+	C_\bullet(K(\ZZ, n), \ZZ) \simeq \ZZ \otimes_{C_\bullet(K(\ZZ, n), \ZZ)}^\Lbf \ZZ.
+\]
+
+The adjunction $\Dsf(\ZZ)_{\geq 0} \leftrightarrow \DAlg_\ZZ\cn$ forms a commutative square of adjunctions with $\Mod_\ZZ \leftrightarrow \CAlg_\ZZ$ (where the maps from classical objects to derived objects are inclusions and the maps from derived objects to classical objects are $\pi_0$).
+
+One way of understanding $\DAlg_\ZZ\cn$ is through the following Theorem.
+
+\begin{thm}[Quillen, Lurie]
+	The inclusion $\CAlg_\ZZ^{\mathrm{fp,poly}} \hookrightarrow \DAlg_\ZZ\cn$ (where the left hand side is the category of classical finitely generated polynomial rings) induces an equivalence
+	\[
+		\Fun_\Sigma(\DAlg_\ZZ\cn, \Dsf) \simeq \Fun(\CAlg_\ZZ^{\mathrm{fp,poly}}, \Dsf)
+	\]
+	for any $\Dsf$ with sifted colimits (where $\Fun_\Sigma$ denotes sifted colimit preserving functors).
+\end{thm}
+
+Recall that $\DAlg_\ZZ\cn$ is presentable, so it has all colimits.
+In this context, $F: \DAlg_\ZZ\cn \to \Dsf$ preserves sifted colimits if it preserves filtered colimits and geometric realizations.
+``Filtered'' here means $\omega$-filtered, where a simplicial set $I$ is $\kappa$-filtered (for some regular cardinal $\kappa$) if for every $J$ with a $\kappa$-small set of nondegenerate simplices, if $J^\triangleright$ denotes $J$ with a cone point added on the right, then every map $J \to I$ factors through $J^\triangleright$.
+Directed colimits give one example of filtered colimits.
+
+The above theorem lets us construct (sifted colimit-preserving) functors out of $\DAlg_\ZZ\cn$ ``by hand,'' i.e\ by defining them explicitly on $\CAlg_\ZZ^{\mathrm{fp,poly}}$.
+For example, we can define de Rham cohomology in this way.
+
+\section{Lecture 8, 6/29 (D. Arinkin) -- }
+
+For a DG-category $\Asf$, we defined the DG-category $\Csf(\Asf)$ of left $\Asf$-modules (i.e.\ DG-functors $\Asf \to \Csf(k)$) and the subcategory of semi-free modules $\Csf(\Asf)\sfr$.
+Here are some useful perspectives on these categories.
+
+First: the Yoneda embedding gives a functor $h: \Asf \hookrightarrow \Csf(\Asf\op)$, and the image of $h$ generates the subcategory $\Csf(\Asf\op)\sfr$ under shifts, direct sums, and countable extensions.
+Since $\Csf(\Asf\op)\sfr$ is closed under shifts, direct sums,  and finite extensions, it is also closed under cones and homotopy colimits.
+We write $\Csf(\Asf\op)\sfr = \Ind(\Asf)$, the \emph{ind-completion} of $\Asf$.
+
+Second: the DG-category $\Csf(\Asf)\sfr$ is ``basically'' the derived category $\Dsf(\Asf)$.
+More precisely, note that we can define acyclicity and qisos in $\Csf(\Asf)$ pointwise.
+Then:
+
+\begin{prop}
+	\,
+	\begin{enumerate}
+		\item For all $M \in \Csf(\Asf)$, there is a qiso $F \to M$ for $F \in \Csf(\Asf)\sfr$.
+		\item For all $F \in \Csf(\Asf)\sfr$ and acyclic $N \in \Csf(\Asf)$, $\Hom(F, N)$ is acyclic.
+	\end{enumerate}
+\end{prop}
+
+\begin{cor}
+	The composite $\Csf(\Asf)\sfr \hookrightarrow \Csf(\Asf) \to \Csf(\Asf) / \Csf(\Asf)\acy = \Dsf(\Asf)$ is a quasi-equivalence.
+\end{cor}
+
+Third: Embedding into $\Csf(\Asf\op)$ gives a ``nicer version'' of $\Asf$.
+Suppose we have a DG-functor $F: \Asf \to \Bsf$.
+We obtain a ``restriction'' functor $\Csf(\Bsf\op) \to \Csf(\Asf\op)$ via $(F: \Bsf\op \to \Csf(k)) \mapsto (\Asf\op \to \Bsf\op \to \Csf(k)$.
+Note that the square
+\[
+	\begin{tikzcd}
+		\Asf \rar[hook, "h"], \dar["F"] & \Csf(\Asf\op) \dar \\
+		\Bsf \rar[hook, "h"] & \Csf(\Bsf\op)
+	\end{tikzcd}
+\]
+does not commute.
+For example, the restriction of a free module may no longer be free.
+
+We also have an ``extension'' functor $\Csf(\Bsf\op) \Csf(\Asf\op)$ (defined using $\otimes$), which does form a commutative square
+\[
+	\begin{tikzcd}
+		\Asf \rar[hook, "h"], \dar["F"] & \Csf(\Asf\op) \\
+		\Bsf \rar[hook, "h"] & \Csf(\Bsf\op) \uar
+	\end{tikzcd}
+\]
+
+In particular, suppose $F$ is a quasi-equivalence.
+Recall from the problem sets that $F$ need not have a ``quasi-inverse'' $\Bsf \to \Asf$.
+However, let $h(\Asf)$ and $h(\Bsf)$ be the respective quasi-essential images under the Yoneda embedding (both consisting of ``free rank-$1$ unshifted complexes up to qiso'').
+Then extension gives a quasi-equivalence $h(\Asf) \to h(\Bsf)$, and restriction (being the right adjoint of extension) gives an inverse quasi-equivalence.
+That is, passing to $h(-)$ creates quasi-inverses for quasi-equivalences.
+We can think of this as a form of fibrant replacement.
+
+\begin{dfn}
+	A \emph{quasi-functor} $\Asf \to \Bsf$ is a DG-functor $F: \Asf \to \Csf(\Bsf\op)$ with image contained in $h(\Bsf)$.
+\end{dfn}
+
+We can think of a quasi-functor $F$ as an ``$(\Asf, \Bsf)$-bimodule'' such that the underlying $\Bsf$-module lies in $h(\Bsf)$.
+
+\begin{rmk}
+	Given DG-categories $\Asf$ and $\Bsf$, we define a new DG-category $\Asf \otimes \Bsf$ as follows:
+	\begin{itemize}
+		\item $\Ob (\Asf \otimes \Bsf) = \Ob (\Asf) \times \Ob (\Bsf)$.
+		\item $\Hom_{\Asf \otimes \Bsf}(a_1 \otimes b_1, a_2 \otimes b_2) = \Hom_\Asf(a_1, a_2) \otimes_k \Hom_\Bsf(b_1, b_2)$.
+		\item Composition involves a sign rule.
+	\end{itemize}
+	An $(\Asf, \Bsf)$-bimodule is an $\Asf \otimes \Bsf\op)$-module.
+\end{rmk}
 
 \end{document}
