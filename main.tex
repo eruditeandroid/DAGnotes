@@ -1087,4 +1087,273 @@ If $h: \Asf \to \Asf\pretr$ is a quasi-equivalence, we say that $\Asf$ is a \emp
 	Perfect modules do not quite fit into the picture discussed so far -- we also need to allow for (homotopy) direct summands.
 \end{rmk}
 
+\section{Discussion, 6/29 (K.\ Schefers) - Homotopical Thinking}
+
+The goal of this discussion is to teach some ``folk $\infty$-category theory'' -- i.e.\ intuition for $\infty$-categories and homotopy theory.
+
+A key slogan: ``Never say `equals,' only `equivalent.'''
+In practice, this means that we religiously avoid the word ``is'' when comparing two objects.
+This is essentially taking the notion of ``equivalence'' from $1$-category theory to its logical extreme.
+
+\begin{ex}
+In the setting of $\infty$-categories, we have notions of objects, morphisms, functors, and composition.
+However, we do not have a notion of faithful functors.
+Let's explain why.
+
+In $1$-category theory, a functor $F$ is faithful if, whenever $f \neq g$, it follows that $F(f) \neq F(g)$.
+In $\infty$-category theory, it is possible that $f \simeq g$ but $f \neq g$, so injectivity of $\Map(x, y) \to \Map(F(x), F(y))$ no longer makes sense.
+\end{ex}
+
+If we pass to $\pi_0$ (i.e.\ to the homotopy category), we can regain some $1$-categorical notions.
+As one expects, this loses a lot of information.
+
+One might wonder how homotopy types arise out of this perspective.
+Suppose we have an $\infty$-category (say a Kan complex) $\Csf$ and $x, y \in \Ob \Csf$.
+We cannot ask that $x = y$, only that we have an equivalence $f: x \tilde{\rightarrow} y$.
+This can be viewed as a $1$-simplex from $x$ to $y$.
+Similarly, given $f, g: x \tilde{\rightarrow} y$, we cannot ask that $f = g$, only that we have an equivalence $f \tilde{\rightarrow} g$.
+This would give a $2$-simplex.
+Continuing on with higher morphisms would give a homotopy type corresponding to $\Map(x, y)$.
+
+\section{Lecture 9, 6/30 (D. Arinkin) -- }
+
+\subsection{Refresher on quasi-functors}
+
+Recall that we want to consider DG-categories up to quasi-equivalence.
+This can be made precise using a model structure on the category of DG-categories due to Tabuada.\footnote{One has to be cautious about the $2$-category theory involved.
+Drinfeld asked the famous question, ``What do DG-categories form?''
+We will not provide a complete answer to this question here.}
+
+\begin{thm}[To\"en]
+	After localization, the category of morphisms between $\Asf, \Bsf \in \DGCat$ ``is'' the derived category of quasifunctors from $\Asf$ to $\Bsf$.
+\end{thm}
+
+Recall that a quasi-functor from $\Asf$ to $\Bsf$ is an $(\Asf, \Bsf)$-bimodule $M$ (i.e.\ an $(\Asf \otimes \Bsf\op)$-module) such that, for any $a \in \Asf$, the corresponding $\Bsf\op$-module is quasi-representable.
+Explicitly, if we view $M$ as $M: \Asf \otimes \Bsf\op \to \Csf(k)$ and fix $a \in \Asf$, then the functor $M(a, -): \Bsf\op \to \Csf(k)$ is qiso to $h_b$ for some $b \in \Bsf$.
+
+\subsection{Various categories of modules}
+
+Let $\Asf$ be a DG-category.
+Recall that $\Csf(\Asf\op)$ contains a subcategory $\Ind(\Asf) = \Csf(\Asf\op)\sfr$ obtained from $\Asf$ using direct sums, cones, shifts, and countable extensions.
+We have a further subcategory $\Asf\pretr \subset \Ind(\Asf)$ obtained from $\Asf$ using cones and shifts.
+A variant of this construction is the ``Karoubi completion'' $(\Asf\pretr)\Kar$, given by
+\[
+	\{ x \in \Csf(\Asf\op) \, | \, \exists y \textrm{s.t.} x \oplus y \in \Asf\pretr \}.
+\]
+Modules satisfying this condition are called \emph{perfect}, and we also write this last category as $\Perf(\Asf\op)$.
+
+Thus, in increasing order, we have:
+\begin{enumerate}
+	\item $\Asf$, an arbitrary DG-category.
+	\item $\Asf\pretr$, a pre-triangulated DG-category.
+	\item $\Perf(\Asf\op)$, a Karoubian pre-triangulated DG-category.
+	\item $\Ind(\Asf) = \Dsf(\Asf\op)$, a cocomplete (pre-triangulated) DG-category.
+\end{enumerate}
+
+If we consider a classical ring as a one-object DG-category, these four levels correspond to:
+\begin{enumerate}
+	\item $R$ as a one-object DG-category.
+	\item The DG-category of bounded complexes of finite-rank free $R$-modules.
+	\item The DG-category of bounded complexes of finite-rank projective $R$-modules.
+	\item The DG-derived category of $R$.
+\end{enumerate}
+
+\begin{rmk}
+	In a general DG-category, shifts and cones need not exist.
+	However, those that exist are natural and ``as unique as possible.''
+	In particular, they are preserved by DG functors.
+\end{rmk}
+
+\begin{ex}
+	Consider $\Csf(\Asf\pretr)$, the category of DG-functors $\Asf\pretr \to \Csf(k)$.
+	Such functors are determined by their values on $\Asf \subset \Asf\pretr$, so $\Csf(\Asf\pretr) \tilde{\to} \Csf(\Asf)$.
+	Therefore, when considering categories of modules, we may as well assume that $\Asf$ is pretriangulated.
+\end{ex}
+
+The above Example shows in particular that $(\Asf\pretr)\pretr \simeq \Asf\pretr$.
+Similarly, we can show that $(((\Asf\pretr)\Kar)\pretr)\Kar \simeq (Asf\pretr)\Kar$.
+However, $\Ind(-)$ is not an idempotent operation, i.e.\ $\Ind(\Ind(\Asf)) \not\simeq \Ind(\Asf)$, as the construction of $\Ind$ ``freely adds colimits.''
+This can be explained by the fact that DG-functors do not automatically respect infinite direct sums.
+However, we do have $\Ind((\Asf\pretr)\Kar) \simeq \Ind(\Asf)$.
+
+\subsection{Small and large DG-categories}
+
+We would like to separate DG-categories into ``small'' and ``large'' classes.
+The following gives a notion of what we will consider ``large.''
+
+\begin{dfn}
+	A DG-category is (cocomplete) compactly generated if it is quasi-equivalent to $\Ind(\Asf)$ for some $\Asf$.
+\end{dfn}
+
+We can pass from ``small'' DG-categories to ``large'' DG-categories by taking $\Ind$.
+To go from ``large'' DG-categories to ``small'' DG-categories, we pass to the subcategory of compact objects.
+
+We would like these operations to be functorial in the DG-categories involved.
+For ``small'' categories, we consider DG (quasi-)functors, while for ``large'' categories we must consider \emph{continuous} (i.e.\ colimit-preserving) DG (quasi-)functors.
+
+Suppose that a DG-functor $F: \Ind(\Asf_1) \to \Ind(\Asf_2)$ is continuous.
+Then $F$ is determined by its values on $\Asf_1$, but it need not be induced by a (quasi-)functor $\Asf_1 \to \Asf_2$.
+Thus $\Ind$ is not a full functor (i.e.\ more morphisms appear).
+
+\section{Lecture 10, 6/30 (B. Antieau) -- More $\infty$-categories and derived commutative rings} 
+
+Recall that for a commutative ring $k$, we define $\DAlg_k\cn := \ssf\CAlg_k[W\inv]$.
+
+\begin{thm}[Quillen, Lurie]
+	If $\Dsf$ is an $\infty$-category with sifted colimits, then
+	\[
+		\Fun_\Sigma(\DAlg_k\cn, \Dsf) \tilde{\to} \Fun(\CAlg_k^{\mathrm{fp,poly}}, \Dsf),
+	\]
+	where $\Fun_\Sigma$ denotes the $\infty$-category of sifted colimit-preserving functors.
+\end{thm}
+
+\subsection{Presentable $\infty$-categories}
+
+\begin{dfn}
+	An $\infty$-category $\Csf$ is \emph{presentable} if it is an accessible localization
+	\[
+		\Psh(\Csf_0) \leftrightarrow \Csf
+	\]
+	for some small $\infty$-category $\Csf_0$, where $\Psh(\Csf_0) = \Fun(\Csf_0\op, \Spaces)$.
+	The ``accessible localization'' condition means that $\Csf \to \Psh(\Csf_0)$ is fully faithful and preserves $\kappa$-filtered colimits for some $\kappa$.
+\end{dfn}
+
+Here are some useful facts.
+\begin{enumerate}
+	\item Presentable $\infty$-categories have all colimits and limits.
+	\item Left adjoints (always) preserve colimits, and right adjoints (always) preserve colimits.
+		The adjoint functor theorem below gives a converse to this.
+\end{enumerate}
+
+\begin{thm}[Adjoint Functor Theorem]
+	\,
+	\begin{enumerate}
+		\item Let $\Csf$ be a presentable $\infty$-category, $\Dsf$ an $\infty$-category with all colimits, and $F: \Csf \to \Dsf$ a colimit-preserving functor.
+			Then $F$ admits a right adjoint.
+		\item Let $\Csf$ and $\Dsf$ be presentable $\infty$-categories and $G: \Dsf \to \Csf$ a functor that preserves limits and $\kappa$-filtered colimits for some $\kappa$.
+			Then $G$ admits a left adjoint.
+	\end{enumerate}
+\end{thm}
+
+The reason ``$\kappa$-filtered colimits'' are so important here is that presentable $\infty$-categories have generators which are ``$\kappa$-compact,'' so behavior of presentable $\infty$-categories can be understood by looking at these generators.
+
+Presentability is often obvious in practice from the construction of an $\infty$-category.
+Lurie showed in HTT that many relevant model categories have presentable homotopy-coherent nerves.
+
+Here are some examples of adjunctions (I was a bit rushed and might have gotten the handedness wrong).
+
+\begin{ex}
+	The $\infty$-category $\Spaces$ of spaces has a natural adjunction $\pi_0: \Spaces \leftrightarrow \Set :G$.
+	Both categories here are presentable.
+	However, $G$ does not preserve colimits.
+	For a simplicial set $X_\bullet$, the colimit in $\Set$ is just the coequalizer of $X_1 \rightrightarrows X_0$, whereas the coequalizer in $\Spaces$ is the geometric realization $|X_\bullet|$.
+	(In particular, one can consider the pushout $\pt \sqcup_{S^0} \pt$.)
+\end{ex}
+
+\begin{ex}
+	Let $I$ be a simplicial set, and write $\Spaces^I = \Fun(I, \Spaces)$.
+	The constant functor $\Spaces \to \Spaces^I$ preserves both limits and colimits.
+	Therefore this constant functor has a left adjoint (viz.\ $I$-indexed colimits) and a right adjoint (viz.\ $I$-indexed limits).
+\end{ex}
+
+\begin{ex}
+	Similarly, the inclusion $\Spaces \to \Cat_\infty$ preserves both limits and colimits.
+	The right adjoint is the ``groupoid core'' functor, and the left adjoint is the ``geometric realization'' functor.
+\end{ex}
+
+\begin{ex}
+	The functor $\Cat \to \Cat_\infty$ preserves limits and has a left adjoint given by the ``homotopy category'' functor $\Csf \mapsto \Ho \Csf$.
+\end{ex}
+
+Here are a few constructions we can make starting from an $\infty$-category $\Csf$.
+The constructions are listed in decreasing order of inclusion (i.e.\ $\Ind(\Csf) \subset \Psh_\Sigma(\Csf) \subset \Psh(\Csf)$).
+Details can be found in Chapter 5 of HTT.
+\begin{enumerate}
+	\item For any $\Csf$, we can define $\Psh(\Csf) = \Fun(\Csf\op, \Spaces)$.
+		The corresponding Yoneda embedding preserves no colimits.
+		For any presentable $\Dsf$, we have $\Fun(\Csf, \Dsf) = \Fun^L(\Psh(\Csf), \Dsf)$, the category of left adjoint functors.
+		Every object of $\Psh(\Csf)$ is a colimit of representables.
+	\item For any $\Csf$ with finite coproducts, we can define $\Psh_\Sigma(\Csf) = \Fun^{\prod}(\Csf\op, \Spaces)$, the category of finite-product-preserving presheaves.
+		The corresponding Yoneda embedding preserves finite coproducts.
+		For any presentable $\Dsf$, we have $\Fun(\Csf, \Dsf) = \Fun_\Sigma(\Psh_\Sigma(\Csf), \Dsf)$.
+		We have $\Fun^{\coprod}(\Csf, \Dsf) = \Fun^L(\Psh_\Sigma(\Csf), \Dsf)$.
+		Every object of $\Psh(\Csf)$ is a geometric realization $|X_\bullet|$ where each $X_n$ is a filtered colimit of representables.
+	\item For any $\Csf$ with finite coproducts, we can define $\Ind(\Csf) = \Fun^{\mathrm{lex}}(\Csf\op, \Spaces)$, the category of finite-limit-preserving presheaves.
+		The corresponding Yoneda embedding preserves finite colimits.
+		For any presentable $\Dsf$, we have $\Fun(\Csf, \Dsf) = \Fun_\omega(\Ind(\Csf), \Dsf)$, the category of filtered-colimit-preserving functors.
+		We have $\Fun^{\mathrm{rex}}(\Csf, \Dsf) = \Fun^L(\Ind(\Csf), \Dsf)$.
+		Every object of $\Psh(\Csf)$ is a filtered colimit of representables.
+\end{enumerate}
+
+\begin{rmk}
+	The filtered simplicial sets $I$ are exactly those such that $\colim: \Spaces^I \to \Spaces$ preserves finite limits.
+	Similarly, $I$ is sifted if and only if $\colim: \Spaces^I \to \Spaces$ preserves finite coproducts.
+\end{rmk}
+
+\subsection{Animation}
+
+Let's return to the Theorem from the start of the lecture.
+From the above perspective, we can reinterpret the theorem as coming from an equivalence
+\[
+	\DAlg_k\cn \simeq \Psh_\Sigma(\CAlg_k^{\mathrm{fp,poly}}).
+\]
+
+The $\Psh_\Sigma$ construction is useful enough that people call it \emph{animation} and write $\An(-) = \Psh_\Sigma(-)$.
+People like to think of this as capturing the ``spirit'' or ``anima.''
+
+\begin{ex}
+	$\Spaces \simeq \An(\FinSet) \simeq \Psh(\pt) \simeq \Ind(\textrm{compact spaces})$.
+\end{ex}
+
+\begin{ex}
+	An $\infty$-categorical version of Dold-Kan gives $\Dsf(\ZZ)_{\geq 0} \simeq \An(\Mod_\ZZ^{\textrm{free,fp}})$.
+\end{ex}
+
+\subsection{$\EE_\infty$-rings}
+
+Another useful flavor of ``derived commutative rings'' is given by $\EE_\infty$-rings.
+These arise as algebras / modules (terminology is inconsistent in general) for a monad on $\Dsf(k)$.
+
+Recall that a monad $T$ on an $\infty$-category $\Csf$ is just an algebra object in the monoidal category of endofunctors $\End(\Csf)$ (what's the problem?).
+This means we have a composition $T^2 \to T$ and a unit $\id \to T$ satisfying some (homotopy-)commutative diagrams.
+A $T$-algebra $X$ is an object $X \in \Csf$ together with a map $TX \to X$ again satisfying some (homotopy-)commutative diagrams.
+
+The ``free $\EE_\infty$-algebra'' monad on $\Dsf(k)$ is given by
+\[
+	T(M) = \oplus_{n \geq 0} (M^{\otimes n})_{h \Sigma_n},
+\]
+where the subscript $h \Sigma_n$ refers to homotopy $\Sigma_n$-orbits.
+A $T$-algebra $A$ therefore comes with a ``product map''
+\[
+	\oplus_{n \geq 0} (A^{\otimes n})_{h \Sigma_n} \to A,
+\]
+where factoring through homotopy $\Sigma_n$-orbits captures the commutativity of the product.
+
+\begin{ex}
+	The free $\EE_\infty$-algebra on $\ZZ$ is given by $\oplus_{n \geq 0} (\ZZ^{\otimes n})_{h \Sigma_n}$.
+	Computing homology ends up giving the group homology groups $H_*(\Sigma_n, \ZZ^{\sigma(n)})$.
+	These are ``free'' but complicated and very ``non-flat,'' explaining why many people prefer to consider simplicial commutative rings.
+\end{ex}
+
+We write $\CAlg_k^{\EE_\infty}$ for the $\infty$-category of $\EE_\infty$-rings.
+If we consider $\EE_\infty$-algebras in $\Dsf(k)_{\geq 0}$, we obtain a subcategory $\CAlg_k^{\EE_\infty}$ of connective $\EE_\infty$-rings.
+Note that we can now make sense of non-connective ``derived commutative rings.''
+
+\subsection{Four flavors of derived commutative rings}
+
+Let us recall our previous categories of derived commutative rings and introduce a new example.
+\begin{enumerate}
+	\item For $k \supset \QQ$, we can define $\DAlg_k\cn = \CDga_{k, \geq 0}[W\inv]$.
+		This is very concrete but does not work over $\ZZ$.
+	\item For any $k$, we can define $\DAlg_k\cn = \ssf\CAlg_k[W\inv]$.
+		When $k \supset \QQ$, this is equivalent to the above construction.
+		This works over $\ZZ$, and the free objects are not too bad, but it's hard to directly write down a simplicial commutative ring (doing so requires an infinite amount of information).
+	\item We can define $\CAlg_k^{\EE_\infty}$ as above.
+		This works over the sphere spectrum, but many complicated homology groups appear.
+	\item Bhatt and Mathew define a category $\DAlg_k$ as follows.
+		They show that $\Lbf \Sym$ extends to a monad on $\Dsf(k)$.
+		Then $\DAlg_k$ is the $\infty$-category of algebras over this monad.
+		This accounts for examples such as $\Rbf \Gamma(X, \Oc)$ (for a scheme $X$) but is less concrete than the other approach.
+\end{enumerate}
+
 \end{document}
