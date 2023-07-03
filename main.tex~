@@ -1087,7 +1087,7 @@ If $h: \Asf \to \Asf\pretr$ is a quasi-equivalence, we say that $\Asf$ is a \emp
 	Perfect modules do not quite fit into the picture discussed so far -- we also need to allow for (homotopy) direct summands.
 \end{rmk}
 
-\section{Discussion, 6/29 (K.\ Schefers) - Homotopical Thinking}
+\section*{Discussion, 6/29 (K. Schefers) - Homotopical Thinking}
 
 The goal of this discussion is to teach some ``folk $\infty$-category theory'' -- i.e.\ intuition for $\infty$-categories and homotopy theory.
 
@@ -1115,7 +1115,7 @@ Similarly, given $f, g: x \tilde{\rightarrow} y$, we cannot ask that $f = g$, on
 This would give a $2$-simplex.
 Continuing on with higher morphisms would give a homotopy type corresponding to $\Map(x, y)$.
 
-\section{Lecture 9, 6/30 (D. Arinkin) -- }
+\section{Lecture 9, 6/30 (D. Arinkin) -- Different DG-Categories of Modules}
 
 \subsection{Refresher on quasi-functors}
 
@@ -1138,7 +1138,7 @@ Recall that $\Csf(\Asf\op)$ contains a subcategory $\Ind(\Asf) = \Csf(\Asf\op)\s
 We have a further subcategory $\Asf\pretr \subset \Ind(\Asf)$ obtained from $\Asf$ using cones and shifts.
 A variant of this construction is the ``Karoubi completion'' $(\Asf\pretr)\Kar$, given by
 \[
-	\{ x \in \Csf(\Asf\op) \, | \, \exist y \textrm{s.t.} x \oplus y \in \Asf\pretr \}.
+	\{ x \in \Csf(\Asf\op) \, | \, \exists y \textrm{s.t.} x \oplus y \in \Asf\pretr \}.
 \]
 Modules satisfying this condition are called \emph{perfect}, and we also write this last category as $\Perf(\Asf\op)$.
 
@@ -1195,7 +1195,7 @@ Suppose that a DG-functor $F: \Ind(\Asf_1) \to \Ind(\Asf_2)$ is continuous.
 Then $F$ is determined by its values on $\Asf_1$, but it need not be induced by a (quasi-)functor $\Asf_1 \to \Asf_2$.
 Thus $\Ind$ is not a full functor (i.e.\ more morphisms appear).
 
-\section{Lecture 10, 6/30 (B. Antieau) -- ???}
+\section{Lecture 10, 6/30 (B. Antieau) -- More $\infty$-categories and derived commutative rings} 
 
 Recall that for a commutative ring $k$, we define $\DAlg_k\cn := \ssf\CAlg_k[W\inv]$.
 
@@ -1273,7 +1273,7 @@ Details can be found in Chapter 5 of HTT.
 		The corresponding Yoneda embedding preserves no colimits.
 		For any presentable $\Dsf$, we have $\Fun(\Csf, \Dsf) = \Fun^L(\Psh(\Csf), \Dsf)$, the category of left adjoint functors.
 		Every object of $\Psh(\Csf)$ is a colimit of representables.
-	\item For any $\Csf$ with finite coproducts, we can define $\Psh_\Sigma(\Csf) = \Fun^{\Prod}(\Csf\op, \Spaces)$, the category of finite-product-preserving presheaves.
+	\item For any $\Csf$ with finite coproducts, we can define $\Psh_\Sigma(\Csf) = \Fun^{\prod}(\Csf\op, \Spaces)$, the category of finite-product-preserving presheaves.
 		The corresponding Yoneda embedding preserves finite coproducts.
 		For any presentable $\Dsf$, we have $\Fun(\Csf, \Dsf) = \Fun_\Sigma(\Psh_\Sigma(\Csf), \Dsf)$.
 		We have $\Fun^{\coprod}(\Csf, \Dsf) = \Fun^L(\Psh_\Sigma(\Csf), \Dsf)$.
@@ -1343,9 +1343,9 @@ Note that we can now make sense of non-connective ``derived commutative rings.''
 
 Let us recall our previous categories of derived commutative rings and introduce a new example.
 \begin{enumerate}
-	\item For $k \supset \QQ$, we can define $\Dalg_k\cn = \CDga_{k, \geq 0}[W\inv]$.
+	\item For $k \supset \QQ$, we can define $\DAlg_k\cn = \CDga_{k, \geq 0}[W\inv]$.
 		This is very concrete but does not work over $\ZZ$.
-	\item For any $k$, we can define $\Dalg_k\cn = \ssf\CAlg_k[W\inv]$.
+	\item For any $k$, we can define $\DAlg_k\cn = \ssf\CAlg_k[W\inv]$.
 		When $k \supset \QQ$, this is equivalent to the above construction.
 		This works over $\ZZ$, and the free objects are not too bad, but it's hard to directly write down a simplicial commutative ring (doing so requires an infinite amount of information).
 	\item We can define $\CAlg_k^{\EE_\infty}$ as above.
@@ -1354,6 +1354,418 @@ Let us recall our previous categories of derived commutative rings and introduce
 		They show that $\Lbf \Sym$ extends to a monad on $\Dsf(k)$.
 		Then $\DAlg_k$ is the $\infty$-category of algebras over this monad.
 		This accounts for examples such as $\Rbf \Gamma(X, \Oc)$ (for a scheme $X$) but is less concrete than the other approach.
+\end{enumerate}
+
+\section*{Discussion, 6/30 (D. Arinkin) -- What is Wrong with Triangulated Categories?}
+
+There are three problems (maybe more) with triangulated categories:
+\begin{enumerate}
+	\item Gluing does not work.
+	\item Cones are not functorial.
+	\item Categories are not well-behaved.
+\end{enumerate}
+Let's discuss each of these in more detail.
+
+For gluing, suppose $X$ is a scheme.
+We can consider the category of quasicoherent sheaves $\QCoh(X)$ and the corresponding derived category $\Dsf_{\mathrm{qcoh}}(X)$.
+We can construct every $\Fc \in \QCoh(X)$ from sheaves $\Fc_i \in \QCoh(U_i)$ (for an open cover $\{ U_i \}$ of $X$) satisfying the cocycle condition.
+However, this does not work in the derived category.
+
+\begin{ex}
+	Suppose $X = U_1 \cup U_2$, with inclusions $j_i: U_i \to X$ and $j_{12}: U_{12} \to X$.
+	Then, to glue $\Fc_1$ and $\Fc_2$ along $\Fc_{12}$, we would like to let $\Fc = \cone(j_{1*} \Fc_1 \oplus j_{2*} \Fc_2 \to j_{12*} \Fc_{12})[-1]$.
+	However, in the triangulated context, this cone is defined up to non-natural isomorphism.
+	This can be okay for gluing along two opens, but it ruins things when we try to iterate the process and glue along more opens.
+\end{ex}
+
+The same example illustrates why non-functoriality of cones is troublesome.
+When we work in the DG-context, cones are functorial and everything works well.
+
+To see the bad categorical behavior of triangulated categories, note that we would like for suitable functors between categories of quasicoherent sheaves to correspond functorially to Fourier-Mukai transforms.
+
+\begin{ex}
+	Let $E$ be an elliptic curve.
+	Then the Fourier-Mukai transform with kernel $\Oc_\Delta$ gives the identity functor.
+	We can compute that $\Ext^2(\Oc_\Delta, \Oc_\Delta) \neq 0$.
+	This should correspond to a natural transformation from $\id_E$ to $\id_E[2]$.
+	But one can show that no such natural transformation exists when we work in the triangulated context!
+\end{ex}
+
+\section{Lecture 11, 7/3 (B. Antieau) -- Derived Stacks} 
+
+After our setup work, we can move on to something more geometric.
+
+\subsection{Prestacks}
+
+Recall that the functor of points perspective lets us work intelligently with presheaves which are not necessarily representable.
+Let's see how far we can take this approach.
+
+Let $k$ be a commutative ring, and write $\DAlg_k\cn$ for $\CDga_k[W\inv]$ (when $\QQ \subset k$) or $\ssf\CAlg_k[W\inv]$ (in general).
+We define the category of derived affine schemes over $k$ to be $\dAff_k = (\DAlg_k\cn)\op$.
+Define the $\infty$-category of derived prestacks as
+\[
+	\PreStk_k = \Psh(\dAff_k) = \Fun(\dAff_k\op, \Spaces) = \Fun(\DAlg_k\cn, \Spaces).
+\]
+The ``stacky'' behavior of objects here (e.g.\ the fact that points may have automorphisms) comes from the fact that spaces are $\infty$-groupoids.
+
+For any $R \in \DAlg_k\cn$, we let $\Spec R$ be the corresponding representable functor in $\PreStk_k$, i.e.\
+\[
+	(\Spec R)(S) = \Map_{\DAlg_k\cn}(R, S).
+\]
+
+\subsection{Topologies}
+
+\begin{dfn}
+	A map $R \to S$ in $\DAlg_k\cn$ is \emph{flat} if\footnote{Other notions of flatness do appear in the literature (e.g.\ one could ask that $\oplus_i \pi_i R \to \oplus_i \pi_i S$ is flat as a map of graded rings, but we won't use this.)}
+	\begin{enumerate}
+		\item The map of commutative rings $\pi_0 R \to \pi_0 S$ is flat, and
+		\item The action map $\pi_i R \otimes_{\pi_0 R} \pi_0 S \to \pi_i S$ is an isomorphism for all $i \in \ZZ$.
+	\end{enumerate}
+\end{dfn}
+
+The upshot is that the underlying map of commutative rings is flat and that all $\pi_i S$ are induced from $\pi_i R$ freely.
+
+\begin{ex}
+	If $R \to S$ is flat and $R$ is discrete / classical (i.e.\ $\pi_i R = 0$ for $i \neq 0$), then $S$ is discrete and flat over $R$.
+\end{ex}
+
+\begin{ex}
+	The derived commutative ring $\Lbf \Sym_k (k[0])$ is flat over $k$: we have $\pi_* \Lbf \Sym_k (k[0]) = k[x]$ where $|x| = 0$.
+	Note that the analogous statement is not true for the free $\EE_\infty$-ring over $\ZZ$.
+\end{ex}
+
+\begin{ex}
+	The derived commutative ring $\Lbf \Sym_\QQ (\QQ[0])$ is not flat over $\QQ$, since $\pi_* \Lbf \Sym_\QQ (\QQ[0]) = \QQ[x_2]$ is not discrete.
+	One possible intuition for this is that $x_2$ is an ``infinitesimal'' or ``higher nilpotent,'' though the analogy isn't complete since degree zero nilpotents don't present problems.
+\end{ex}
+
+\begin{ex}
+	The identity map $R \to R$, or more generally any equivalence $R \tilde{\to} S$, is flat.
+\end{ex}
+
+\begin{ex}
+	For $R \in \DAlg_k\cn$ and $f \in \pi_0 R$, we can construct a new derived commutative ring $R[1/f]$ as the (homotopy) pushout in the following square:
+\[
+\begin{tikzcd}
+{R[x]} \rar["x \mapsto u f - 1"] \dar["x \mapsto 0"] & {R[u]} \dar \\
+R \rar & {R[1/f]}
+\end{tikzcd}
+\]
+%	\[
+%		\begin{tikzcd}
+%			{R[x]} \rar["x \mapsto u f - 1"] \dar["x \mapsto 0"] {R[u]} \dar \\
+%			R \rar & {R[1/f]}
+%		\end{tikzcd}
+%	\]
+	This is a homotopical version of the classical construction.
+	Here (and elsewhere), we write $R[x]$ (or $R[u]$) for $\Lbf \Sym_k R[0] = (\Lbf \Sym_k k[0]) \otimes_k R$.
+	Note that $R[1/f]$ is flat over $R$, and $\pi_*(R[1/f]) = (\pi_* R)[1/f]$.
+	(One can justify these last few statements using a base change argument which may be discussed in the exercises.)
+\end{ex}
+
+We can lift our classical $\tau$-topologies (i.e.\ fpqc, fppf, \'etale, or Zariski) to the derived context from $\pi_0$.
+Namely, the $\tau$-topology on $\dAff_k$ is generated by finite covers $\{ \Spec S_i \to \Spec R \}$ where each $R \to S_i$ is flat and $\{ \Spec \pi_0 S_i \to \Spec \pi_0 R \}$ is a classical $\tau$-cover.
+
+\subsection{Extensions of \'etale algebras}
+
+Let $R \in \CAlg_k$ and $I \subset R$ be a nilpotent ideal.
+Then the category of $\Et_R$ of \'etale algebras over $R$ is equivalent to the category $\Et_{R/I}$ of \'etale algebras over $R/I$.
+For example, every finite separable field extension over $k$ extends (uniquely, functorially, and essentially surjectively) to an \'etale algebra over $k[x]/(x^n)$.
+One can think of this as being an \'etale analogue of the equivalence of $\Spec R$ and $\Spec R/I$ as non-ringed topological spaces.
+
+\begin{thm}[Lurie]
+For $R \in \DAlg_\ZZ\cn$, we have an equivalence
+	\[
+		\Et_R \simeq \Et_{\pi_0 R}.
+	\]
+\end{thm}
+
+Thus we can construct \'etale morphisms of commutative rings from \'etale morphisms of classical rings.
+
+\begin{ex}
+	Let $R = \Lbf \Sym_\QQ (\QQ[2])$, so $\pi_* R = \QQ[x_2]$ for $|x_2| = 2$.
+	We can view $R$ as a limit of its truncations, which are all nilpotent extensions of $\pi_0 R = \QQ$ (i.e.\ $R$ is ``pro-nilpotent'').
+	Namely, $R = \lim_n (\tau_{\leq 2n} R$, where $\pi_* \tau_{\leq 2n} R = \QQ[x_2] / (x_2^{n+1})$.
+	Thus, extending \'etale extensions of $\pi_0 R$ along each truncation successively, we should expect the above theorem of Lurie to hold.
+	The underlying homotopical idea here is ``convergence of the Postnikov tower.''
+	Note that the analogous statement does not hold for $\Lbf \Sym_\QQ(\QQ[0])$, as all terms are concentrated in degree zero and we cannot ``truncate higher powers away'' homotopically.
+\end{ex}
+
+\subsection{Smoothness}
+
+\begin{dfn}
+	A morphism of derived commutative rings is \emph{smooth} if it is flat and it is smooth on $\pi_0$.
+\end{dfn}
+
+Note that smooth and faithful implies fppf.
+
+\begin{ex}
+	$\Lbf \Sym_k (k[0])$ is smooth over $k$.
+\end{ex}
+
+\subsection{Faithfully flat descent}
+
+\begin{cons}
+	Let $R \to S$ be a morphism in $\DAlg_k\cn$.
+	There exists an ``Amitsur'' / ``descent'' / ``\v{C}ech'' complex, i.e.\ an augmented cosimplicial diagram
+	\[
+		R \to S \rightrightarrows S \otimes_R S \rightarrow \dots.
+	\]
+	Really, $S^\bullet = \left(S \rightrightarrows S \otimes_R S \rightarrow \dots\right)$, as an object of $\csf\DAlg_k\cn = \Fun(\Delta, \DAlg_k\cn)$, is a cosimplicial object in an $\infty$-category, which takes some work to set up honestly.
+\end{cons}
+	
+\begin{rmk}
+	If $R \to S$ is faithfully flat (i.e.\ faithful on $\pi_0$ and flat), then
+	\[
+		R \tilde{\to} \Tot S^\bullet := \lim_\Delta S^\bullet.
+	\]
+	The term ``totalization'' (and the notation $\Tot$) is historically used for limits of cosimplicial objects.
+	This claim follows from classical results: on $\pi_0$, this is faithfully flat descent, while for higher $\pi_i$, this follows from our definition of flatness.
+\end{rmk}
+
+\subsection{(Derived) stacks}
+
+\begin{dfn}
+	We define the \emph{category of derived stacks} $\Stk_k \subset \PreStk_k$ as the full subcategory of \emph{$\tau$-sheaves} $\Sh_\tau(\dAff_k) \subset \Psh(\dAff_k)$.
+	Here $\Fc$ is a $\tau$-sheaf if, for every $\tau$-cover $\Spec S \to \Spec R$, the induced map $\Fc(R) \to \Tot \Fc(\S^\bullet)$ is an equivalence of spaces.
+\end{dfn}
+
+\begin{ex}
+	Any affine derived scheme $\Spec R$ is a derived stack (for any of our $\tau$-topologies).
+	To see this, note that for any $S \to T$, we get a descent complex $S \to T^\bullet$, and 
+	\[
+		(\Spec R)(S) \to \Tot((\Spec R)(T^\bullet))
+	\]
+	can be recast as
+	\[
+		\Hom(R, S) \to \Tot \Hom(R, T^\bullet) \simeq \Hom(R, \Tot(T^\bullet)) \simeq \Hom(R, S),
+	\]
+	which is an equivalence by faithfully flat descent.
+\end{ex}
+
+\begin{ex}
+	Let $\Omega^\infty \Oc := \Spec k[t]$ where $|t| = 0$.
+	Then
+	\[
+		(\Omega^\infty \Oc)(S) = \Map_{\DAlg_k\cn}(k[t], S) \simeq \Omega\infty S,
+	\]
+	the ``underlying space of $S$'' (this is an object of $\Spaces$).
+	Here $\pi_i \Omega^\infty(S) \cong \pi_i(S)$ for all $i \geq 0$.
+\end{ex}
+
+\begin{ex}
+	Let $\GL_1 := \Spec k[t^{\pm 1}]$.
+	We can view $\GL_1(S)$ as the pullback
+	\[
+		\begin{tikzcd}
+			\GL_1(S) \rar \dar & \Omega^\infty \dar \\
+			\pi_0(S)^\times \rar & \pi_0 S.
+		\end{tikzcd}
+	\]
+	Here
+	\[
+		\pi_i(\GL_1(S)) \cong \begin{cases}
+			(\pi_0 S)^\times & i = 0 \\
+			\pi_i S & i \geq 1.
+		\end{cases}
+	\]
+\end{ex}
+
+\begin{ex}
+	Let $\GG_m(S) := \pi_0(S)^\times$.
+	Then $\GG_m$ is a derived stack but is not representable or geometric in any sense.
+\end{ex}
+
+\begin{ex}
+	Let $X = \Spec \ZZ[x] / (x^2)$ for $|x| = 0$.
+	The pushout square
+	\[
+		\begin{tikzcd}
+			{\ZZ[x]} \rar["x \mapsto x^2"] \dar["x \mapsto 0"] & \ZZ[x] \dar \\
+			\ZZ \rar & \ZZ[x] / (x^2)
+		\end{tikzcd}
+	\]
+	gives rise to a pullback square of derived stacks
+	\[
+		\begin{tikzcd}
+			X(S) \rar \dar & \Omega^\infty S \dar \\
+			\pt \rar & \Omega^\infty S,
+		\end{tikzcd}
+	\]
+	where the rightmost vertical map acts by $r \mapsto r^2$ on $\pi_0$ and $s \mapsto 2s$ on $\pi_i$.
+	This yields short exact sequences
+	\[
+		\begin{tikzcd}
+			0 \rar & \frac{\pi_1 S}{2} \rar & \pi_0 X(0) \rar & \{ r \in \pi_0 S \, | \, r^2 = 0 \} \rar & 0
+		\end{tikzcd}
+	\]
+	and
+	\[
+		\begin{tikzcd}
+			0 \rar & \frac{\pi_{i+1} S}{2} \rar \pi_i X(S) \rar & (\pi_i)(S)[2] \rar & 0,
+		\end{tikzcd}
+	\]
+	allowing us to compute $\pi_i X(S)$.
+\end{ex}
+
+\section{Lecture 12, 7/3 (D. Arinkin) -- Compactness and DG-Categories}
+
+There are two main flavors of DG-categories we will consider:
+\begin{itemize}
+	\item Pre-triangulated Karoubian DG-categories, exemplified by $\Perf(\Asf)$.
+		These are relatively ``small,'' and allow us to take cones, shifts, and direct summands.
+		We like to consider arbitrary DG (quasi-)functors between such DG-categories.
+	\item Cocomplete DG-categories, exemplified by $\Ind(\Asf) = \Dsf(\Asf\op)$.
+		These are relatively ``large,'' and allow us to take infinite direct sums in addition to the above.
+		We like to consider continuous DG (quasi-)functors between such DG-categories (i.e.\ those DG-functors that respect arbitrary direct sums and hence arbitrary direct colimits).
+\end{itemize}
+
+\begin{rmk}
+	If we have cones and infinite direct sums, we can obtain arbitrary colimits.
+	This is discussed in the exercises.
+	The idea is that the colimit over a diagram $M: I \to \Asf$ (with $I$ a $1$-category) is given by
+	\[
+		\cone\left( \oplus_{\alpha \to \beta} M_\alpha \to \oplus_{\beta \in I} M_\beta \right).
+	\]
+	We can extend to this notion to computing geometric realizations of simplicial sets.
+\end{rmk}
+
+\subsection{A key fact}
+
+For any DG-category $\Asf$ and any cocomplete DG-category $\Bsf$, we have
+\[
+	\Fun(\Ind(\Asf), \Bsf)\cont = \Fun(\Asf, \Bsf).
+\]
+
+\begin{ex}
+	Let $R_1$ and $R_2$ be DG-rings.
+	Note that $\Dsf(R_1) = \Ind(\Perf(R_1)) = \Ind(R_1\op)$, so
+	\[
+		\Fun(\Dsf(R_1), \Dsf(R_2))\cont = \Fun(R_1\op, \Dsf(R_2)) \simeq \Dsf(R_1\op \otimes R_2).
+	\]
+	We are cheating a bit here, involving the fact that we are working with $\Dsf$ and quasi-functors rather than $\Csf$ and functors.
+	Luckily, the two ways in which we cheat cancel each other out.
+
+	We can furthemore consider $\Dsf(R_2) = \Ind(\Perf(R_2)) = \Ind(R_2\op)$ and use this perspective to construct smaller subcategories of $\Dsf(R_1\op \otimes R_2)$ as categories of functors.
+\end{ex}
+
+\begin{ex}
+	Recall that $\Ind(\Asf) = \Fun(\Asf\op, \Dsf(k))$ (since $k$ is a field, there is not much difference between $\Csf(k)$ and $\Dsf(k)$).
+	Then $\Ind(\Asf) = \Fun(\Ind(\Asf\op), \Dsf(k))\cont$.
+\end{ex}
+
+\subsection{Compactly generated DG-categories}
+
+Last time, we declared that a DG-category $\Bsf$ is compactly generated if $\Bsf \simeq \Ind(\Asf)$ for some $\Asf$.
+
+We would like to disentangle the terms ``compact'' and ``generation'' here.
+Let $\Bsf$ be a cocomplete DG-category.
+
+\begin{dfn}
+	An object $x \in \Bsf$ is compact if $\Hom_\Bsf(x, -)$ respects (infinite) direct sums.
+	That is, the natural map
+	\[
+		\oplus_\alpha \Hom(x, x_\alpha) \to \Hom\left(x, \oplus_\alpha x_\alpha\right)
+	\]
+	is a qiso.
+	Note that $\Hom_\Bsf(x, -)$ always respects infinite direct products (when they exist).
+	One can think of ``compactness'' as meaning that every map from $x$ to an infinite direct sum always factors (up to qiso) as a map to a finite subsum.
+\end{dfn}
+
+\begin{rmk}
+	In the abelian category $R\Mod^\heartsuit$:
+	\begin{itemize}
+		\item $\Hom(M, -)$ respects infinite direct sums if $M$ is finitely generated.
+		\item $\Hom(M, -)$ respects filtered colimits if $M$ is finitely presented.
+	\end{itemize}
+	In a cocomplete DG-category, these notions coincide.
+\end{rmk}
+
+\begin{prop}
+	Let $\Asf$ be a DG-category and $F \in \Dsf(\Asf)$.
+	Then $F$ is compact if and only if $F$ is perfect.
+\end{prop}
+
+The proof is left as an exercise.
+
+If $\Bsf$ is compactly generated, then $\Bsf \simeq \Ind(\Bsf^c)$, where $\Bsf^c$ is the full subcategory of compact objects of $\Bsf$.
+This explains the name!
+
+\begin{rmk}
+	Suppose $\Bsf \simeq \Ind(\Asf)$.
+	We have
+	\[
+		\Hom_\Bsf\left(\oplus_\alpha x_\alpha, \oplus_\beta x'_\beta)\right) = \prod_{\alpha} \Hom\left(x_\alpha, \oplus_\beta x'_\beta)\right).
+	\]
+	If $x_\alpha, x'_\beta \in \Asf$ for all $\alpha, \beta$, then this becomes
+	\[
+		\prod_\alpha \oplus_\beta \Hom_\Asf(x_\alpha, x'_\beta),
+	\]
+	so we can think of a homomorphism as an infinite matrix with only finitely many nonzero entries in each column.
+\end{rmk}
+
+\begin{cor}
+	Let $\Asf$ be a DG-category, $\Bsf$ a cocomplete DG-category, and $F: \Asf \to \Bsf$ a DG-functor.
+	Write $\tilde{F}: \Ind(\Asf) \to \Bsf$ for the corresponding continuous DG-functor.
+	Suppose that $F$ is (quasi-)fully faithful and that $F(\Asf) \subset \Bsf^c$.
+	Then $\tilde{F}$ is also (quasi-)fully faithful.
+	Moreover, $\tilde{F}$ is an equivalence if and only if $\Asf^\perp = 0$ (i.e.\ if $x \in \Bsf$ and $\Hom(F(y), x)$ is acyclic for all $y \in \Asf$, then $x \simeq 0$).
+\end{cor}
+
+We can reformulate the former statement as follows.
+Let $\Bsf$ be cocomplete and $\Asf \subset \Bsf^c$ a full subcategory.
+Then $\Ind(\Asf)$ is a full subcategory of $\Bsf$ (the full cocomplete subcategory generated by $\Asf$).
+
+\begin{ex}
+	Let $\Bsf$ be a cocomplete DG-category and $x \in \Bsf$.
+	Then the DG-ring $R = \End_\Bsf(x)$ gives a full subcategory $\Asf$ of $\Bsf$ (the full subcategory with one object, namely $x$).
+	This extends to a continuous functor $\Ind(\Asf) = \Dsf(R\op) \to \Bsf$, given by $- \otimes_R x$.
+	If $x$ is compact, this functor is fully faithful.
+\end{ex}
+
+\begin{ex}
+	The claim about equivalences in the Corollary above gives $\Ind(\Asf) \simeq \Ind((\Asf\pretr)\Kar)$.
+\end{ex}
+
+\begin{ex}
+	Let $\Ob \Asf = \{ x_1, \dots, x_n \}$.
+	Then $\Ind(\Asf)$ is generated by the compact object $x_1 \oplus \dots x_n$.
+	Letting $R = \End(x_1 \oplus \dots x_n)$, we obtain $\Ind(\Asf) \simeq \Dsf(R\op)$.
+\end{ex}
+
+\section{Discussion, 7/3 (B. Antieau) -- }
+
+How can we explicitly compute the ring structure on $H_\bullet(\CC\PP^\infty, \QQ)$?
+
+Note that $\CC\PP^\infty \simeq BS^1 \simeq K(\ZZ, 2)$, and $\CC\PP^\infty$ has a product map $\CC\PP^\infty \times \CC\PP^\infty \to \CC\PP^\infty$ (corresponding to the tensor product of complex line bundles).\footnote{If one wants to work strictly, one can view $B^2 \ZZ$ as a simplicial object and consider the codiagonal map.}
+As an algebra, we have 
+\[
+	C_\bullet(\CC\PP^\infty, \QQ) \simeq \QQ \otimes_{C_\bullet(S^1, \QQ)} \QQ.
+\]
+(using the derived tensor product of algebras here).
+Let's explain why.
+
+How do we compute $R \otimes_T S$, the pushout in $\DAlg_k\cn$?
+We can understand this as the geometric realization of
+\[
+	\dots \to R \otimes_k T \otimes_k S \rightrightarrows R \otimes_k S,
+\]
+i.e.\ the geometric realization of the simplicial derived commutative ring $(R \otimes_k T^\bullet \otimes_k S)$ (induced by the bar construction).
+In general, this argument shows that any $\infty$-category $\Csf$ with finite coproducts and geometric realizations has pushouts.
+The bar construction can also be used to construct $BG$ as the geometric realization of the simplicial object $B_\bullet G = \pt \times G^\bullet \times \pt$.
+
+We can obtain the algebra structure via the fold maps $T \sqcup T \to T$.
+In particular, we have
+\begin{align*}
+	C_\bullet(BS^1, \QQ) &\simeq C_\bullet(|B_\bullet S^1, \QQ) \\
+	&\simeq |C_\bullet(B_\bullet S^1, \QQ)| \\
+	&\simeq |C_\bullet(BS^1, \QQ)^{\otimes \bullet}| \\
+	&= \QQ \otimes_{C_\bullet(S^1, \QQ)} \QQ.
+\end{align*}
+This gives one way of computing $C_\bullet(BS^1, \QQ)$.
+
+An alternative approach is to view $\Lbf \Sym_\ZZ(\ZZ[2])$ as a divided power algebra on a degree two generator.
+
 \end{enumerate}
 
 \end{document}
