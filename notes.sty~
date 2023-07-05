@@ -19,6 +19,7 @@
 \newcommand{\acy}{^{\mathrm{acyclic}}}
 \newcommand{\cf}{^{\mathrm{cf}}}
 \newcommand{\cn}{^{\mathrm{cn}}}
+\newcommand{\cont}{^{\mathrm{cont}}}
 \newcommand{\dg}{^{\mathrm{dg}}}
 \newcommand{\hc}{^{\mathrm{hc}}}
 \newcommand{\Kar}{^{\mathrm{Kar}}}
@@ -105,11 +106,12 @@
 \newcommand{\DAlg}{\mathsf{DAlg}}
 \newcommand{\DGCat}{\mathsf{DGCat}}
 \newcommand{\dSch}{\mathsf{dSch}}
-\newcommand{\Et}{\mathsf{\'Et}}
+\newcommand{\Et}{\mathsf{\acute{E}t}}
 \newcommand{\Ex}{\mathsf{Ex}}
 \newcommand{\FinSet}{\mathsf{FinSet}}
 \newcommand{\Fun}{\mathsf{Fun}}
 \newcommand{\Ho}{\mathsf{Ho}}
+\newcommand{\HStk}{\mathsf{HStk}}
 \newcommand{\Ind}{\mathsf{Ind}}
 \newcommand{\Loc}{\mathsf{Loc}}
 \newcommand{\Kan}{\mathsf{Kan}}
@@ -126,6 +128,7 @@
 \newcommand{\Set}{\mathsf{Set}}
 \newcommand{\sSet}{\mathsf{sSet}}
 \newcommand{\Sh}{\mathsf{Sh}}
+\newcommand{\Stk}{\mathsf{Stk}}
 \newcommand{\Spaces}{\mathsf{S}}
 \newcommand{\Top}{\mathsf{Top}}
 \newcommand{\WKan}{\mathsf{WKan}}

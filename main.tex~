@@ -1756,16 +1756,339 @@ The bar construction can also be used to construct $BG$ as the geometric realiza
 
 We can obtain the algebra structure via the fold maps $T \sqcup T \to T$.
 In particular, we have
-\begin{align*}
-	C_\bullet(BS^1, \QQ) &\simeq C_\bullet(|B_\bullet S^1, \QQ) \\
-	&\simeq |C_\bullet(B_\bullet S^1, \QQ)| \\
-	&\simeq |C_\bullet(BS^1, \QQ)^{\otimes \bullet}| \\
-	&= \QQ \otimes_{C_\bullet(S^1, \QQ)} \QQ.
-\end{align*}
+\[
+	C_\bullet(BS^1, \QQ) \simeq C_\bullet(|B_\bullet S^1|, \QQ) \simeq |C_\bullet(B_\bullet S^1, \QQ)| \simeq |C_\bullet(BS^1, \QQ)^{\otimes \bullet}| \simeq \QQ \otimes_{C_\bullet(S^1, \QQ)} \QQ.
+\]
 This gives one way of computing $C_\bullet(BS^1, \QQ)$.
 
 An alternative approach is to view $\Lbf \Sym_\ZZ(\ZZ[2])$ as a divided power algebra on a degree two generator.
+Yet another way is to try to use the cell structure on $\CC\PP^\infty$.
 
+\section{Lecture 13, 7/5 (D. Arinkin) -- $\Qcoh(X)$ as a DG-category}
+
+Last time, we discussed compactly generated DG-categories.
+Recall that, for a cocomplete DG-category $\Bsf$, an object $x \in \Bsf$ is compact if and only if $\Hom_\Bsf(x, -)$ is continuous (i.e.\ commutes with arbitrary colimits, or equivalently commutes with direct sums).
+Given any DG-category $\Asf$, we can construct a cocomplete, compactly generatedDG-category $\Ind(\Asf)$.
+Conversely, given a cocomplete DG-category $\Bsf$, we obtain a pre-triangulated, Karoubian DG-category $\Bsf^c$ consisting of compactly generated objects of $\Bsf$.
+Thus we obtain an equivalence between pre-triangulated, Karoubian DG-categories and cocomplete, compactly generated DG-categories.
+
+If $\Bsf$ is cocomplete, then we say $\Asf \subset \Bsf^c$ generates $\Bsf$ if $\Asf^\perp = 0$.
+In this case, the natural map $\Ind(\Asf) \to \Bsf$ is an equivalence.
+Furthermore, we obtain $\Bsf^c = (\Asf\pretr)\Kar$, i.e.\ $\Bsf^c$ can be obtained from $\Asf$ by taking cones and direct summands.
+Conversely, if $\Bsf$ is compactly generated, then any $\Asf \subset \Bsf^c$ with $\Bsf^c = (\Asf\pretr)\Kar$ generates $\Bsf$.
+
+\subsection{$\Qcoh(X)$}
+
+We are interested in studying the (derived) category of quasicoherent sheaves $\Qcoh(X)$ on a scheme $X$.
+One classical construction of this is as the derived category of an abelian category $\Qcoh(X)^\heartsuit$ (objects of which are constructed by gluing along affines).
+This works fine for nice schemes but doesn't behave well in general.
+
+A better construction is to take the derived category of arbitrary $\Oc_X$-modules and then restrict to the full subcategory of objects with quasicoherent cohomology.
+This solves some problems with the other approach: 
+\begin{itemize}
+	\item $\Qcoh(X)^\heartsuit$ typically doesn't have enough projectives (more generally, ``nice'' resolutions by quasicoherent sheaves may not exist).
+	\item Injectives in $\Qcoh(X)^\heartsuit$ are not a priori injective as sheaves (leading to some question of how to define sheaf cohomology -- whether to use the derived pushforward of $\Qcoh(X)$ or $\Sh(X)$).
+\end{itemize}
+
+If we work with DG-categories, we can actually define $\Qcoh(X)$ directly by gluing.
+
+\begin{dfn}
+	For a (derived) prestack $X$, we define
+	\[
+		\Qcoh(X) = \lim_{\Spec R \to X} \Dsf(R).
+	\]
+\end{dfn}
+
+If $X$ is a scheme, it suffices to take the limit over affine opens $\Spec R \subset X$ (so in particular, when $X$ is classical, we only need to consider classical rings $R$).
+The limit appearing here is a limit of (cocomplete) DG-categories which is indexed by an $\infty$-category.
+
+\begin{ex}
+	If $X$ is a quasicompact separated scheme, then we can write $X = \cup_{i=1}^n U_i$ with each $U_i = \Spec R_i$ affine and all intersections also affine.
+	An object $\Fc \in \Qcoh(X)$ is specified by:
+	\begin{enumerate}
+		\item A collection $\Fc_i \in \Qcoh(U_i) = \Dsf(R_i)$.
+		\item A collection of quasi-isomorphisms $\Fc_i |_{U_i \cap U_j} \tilde{\to} \Fc_j |_{U_i \cap U_j}$ in $\Dsf(R_{ij})$.
+		\item Further compatibilities of these isomorphisms (chain homotopies and higher homotopies) on triple intersections, quadruple intersections, etc.
+	\end{enumerate}
+	For $X$ quasicompact, this process terminates after taking finitely many intersections (but can still be annoying).
+\end{ex}
+
+\begin{ex}
+	Suppose $X = U \cup V$.
+	Then the limit definition lets us write
+	\[
+		\Qcoh(X) = \Qcoh(U) \times_{\Qcoh(U \cap V)} \Qcoh(V).
+	\]
+	Thus an object of $\Qcoh(X)$ is given by a pair of objects of $\Qcoh(U)$ and $\Qcoh(V)$ together with a quasi-isomorphism of the restrictions to $\Qcoh(U \cap V)$.
+	One can compute $\Hom$ in this category using the \v{C}ech complex.
+\end{ex}
+
+\subsection{Compact generation of $\Qcoh(X)$}
+
+We can apply the above arguments to understanding compact objects in $\Qcoh(X)$.
+
+\begin{dfn}
+	An object $\Fc \in \Qcoh(X)$ is perfect if $\Fc|_{\Spec R}$ is perfect for all $\Spec R \to X$.
+	(It suffices to check this property on an open cover of $X$.)
+\end{dfn}
+
+\begin{cor}
+	Let $X$ be a quasicompact separated scheme.
+	Then
+	\[
+		(\Qcoh(X))^c = \Perf(X).
+	\]
+\end{cor}
+
+The key idea here is that we can compute $\Hom$ using the \v{C}ech complex, and that in this case infinite direct sums and finite products commute.
+
+We would like to generally understand when $\Qcoh(X)$ is compactly generated.
+This is important and not immediate from the definitions (limits of compactly generated DG-categories need not be compactly generated).
+
+Note that, for $X = U \cup V$, we always have
+\[
+	\Qcoh(X) = \Qcoh(U) \times_{\Qcoh(U \cap V)} \Qcoh(V) \textrm{ and } \Perf(X) = \Perf(U) \times_{\Perf(U \cap V)} \Perf(V).
+\]
+However, this tells us nothing about whether the latter category generates the former.
+
+One of the first affirmative answers to the question of compact generation is the following.
+
+\begin{thm}[Thomason-Trobaugh]
+	If $X$ is a quasicompact and separated scheme, then $\Perf(X)$ generates $\Qcoh(X)$.
+\end{thm}
+
+\begin{proof}
+	By induction, we can reduce to the case $X = U \cup V$ where $U$ and $U \cap V$ are ``perfect'' (i.e.\ satisfy the conclusions of the theorem) and $V$ is affine.
+	The outline is as follows.
+	\begin{enumerate}
+		\item Take generators $\Fc_\alpha \in \Perf(U)$.
+			(If $U$ is affine, we can just take $\Fc = \Oc_U$.)
+			Extend these generators to $\tilde{\Fc}_\alpha \in \Perf(X)$.
+			This is a technical process and can be done in a weak sense that suffices for the purposes of the proof.
+		\item The $\tilde{\Fc}_\alpha$'s should generate $\Perf(X)$ ``modulo'' sheaves supported on $Y := X \setminus U$.
+			Note that $Y$ is closed in $V$.
+			So take enough perfect objects $\Gc_\beta$ of 
+			\[
+				\Qcoh(V)_Y = \{ \Fc \in \Qcoh(V) \, | \, \Fc_{U \cap V} = 0 \}
+			\]
+			to generate $\Qcoh(V)_Y$.
+			If $Y = \{ f_1 = \dots = f_k = 0 \}$, then we can take $\Gc$ to be the complex $\bigotimes_{i=1}^k (f_i: \Oc_V \to \Oc_V)$.
+			Extend these to $\tilde{\Gc}_\alpha \in \Perf(X)$ such that $\tilde{\Gc}_\alpha|_U = 0$.
+		\item The collection $\{\tilde{\Fc}_\alpha\} \cup \{\tilde{\Gc}_\beta\}$ generates $\Qcoh(X)$.
+			This is comparatively easy to show.
+	\end{enumerate}
+\end{proof}
+
+\section{Lecture 14, 7/5 (B. Antieau) - More on derived stacks}
+
+Recall that the category of derived stacks (for the $\tau$-topology) is defined as $\Stk_k = \Sh_\tau(\dAff_k)$.
+
+\subsection{Homotopy sheaves}
+
+Given a derived stack $X$, we can consider the assignment $R \mapsto \pi_0(X(R))$, which gives a presheaf of sets on $\dAff_k$.
+Write $\pi_0^\tau(X)$ for the sheafification of this presheaf.
+To capture higher homotopy groups, fix a point $x: \Spec k \to X$ and consider the assignments $R \mapsto \pi_i(X(R), x)$ (where we precompose the map $x$ with the structure map $\Spec R \to \Spec k$).
+This yields a presheaf which we sheafify to gain sheaves of groups $\pi_i^\tau(X, x)$ (in fact, sheaves of abelian groups for $i \geq 2$).
+
+\begin{ex}
+	Recall that we defined $\Omega^\infty \Oc (R) = \Omega^\infty R$, the ``underlying space / homotopy type'' of $R$.
+	Here $\pi_i(\Omega^\infty R, 0) \simeq H_i(R)$, so
+	\[
+		\pi_i^\tau(\Omega^\infty \Osf)(R) = H_i(R) = \pi_i(R).
+	\]
+\end{ex}
+
+\begin{ex}
+	For $\GG_m(R) = (\pi_0 R)^\otimes$, we get $\pi_0^\tau \GG_m = \GG_m$ and $\pi_i^\tau \GG_m = 0$ for $i > 0$.
+\end{ex}
+
+\begin{ex}
+	For $\GL_1 = \Spec \ZZ[t^{\pm 1}]$, the pullback diagram
+	\[
+		\begin{tikzcd}
+			\GL_1(R) \rar \dar & \Omega^\infty R \rar \\
+			(\pi_0 R)^\otimes \rar & \pi_0 R
+		\end{tikzcd}
+	\]
+	gives $\pi_0^\tau \GL_1 (R) = \GG_m(R)$ and $\pi_i^\tau \GL_1(R) = \pi_i\Omega^\infty \Oc$ for $i \geq 0$.
+\end{ex}
+
+
+\subsection{Derived stacks and classical stacks}
+
+Recall that we have an adjunction
+\[
+	\DAlg_k\cn \leftrightarrows \CAlg_k.
+\]
+Passing to opposites, we get an adjunction
+\[
+	\iota: \Aff_k \leftrightarrows \dAff_k : \Spec \pi_0.
+\]
+
+We can obtain a further adjunction between ``higher stacks'' (i.e.\ $\HStk = \Sh_\tau(\Aff_k)$) and derived stacks (i.e.\ $\Stk_k$).
+Namely, $\iota$ induces a ``classical locus'' functor 
+\[
+	\iota^* = (-)\cl : \HStk_k \to \Stk_k,
+\]
+given by $X\cl(R) = X(R)$, where $X\cl$ is only defined on discrete commutative rings.
+The functor $(-)\cl$ admits both a left adjoint $\iota_*$ and a right adjoint $\iota_!$.
+Here $\iota_*$ is defined on a derived commutative ring $R$ by
+\[
+	(\iota_* X)(R) = X(\pi_0 R)
+\]
+The left Kan extension $\iota_!$ is defined on a discrete commutative ring by
+\[
+	\iota_! (R) = X(R) 
+\]
+and is extended to derived commutative rings by taking colimits.
+
+\begin{ex}
+	\[
+		\GG_m\cl \simeq \GL_1\cl \simeq \GG_m^\heartsuit,
+	\]
+	where the latter is $\GG_m$ viewed as a higher stack.
+\end{ex}
+
+\begin{ex}
+	\[
+		(\Spec R)\cl \simeq \Spec \pi_0 R.
+	\]
+\end{ex}
+
+\begin{ex}
+	One can compute using adjunctions that
+	\[
+		(\iota_* \Spec R)(\Spec S) = \Hom(R, \pi_0 S).
+	\]
+\end{ex}
+
+\begin{dfn}
+	A derived stack $X$ is \emph{classical} if $\iota_! X\cl \tilde{\to} X$.
+\end{dfn}
+
+\begin{ex}
+	The derived stack $\GL_1 = \Spec \ZZ[t^{\pm 1}]$ is classical, even though it has higher homotopy sheaves when viewed as an object of $\Stk_k$.
+	The idea is that derived commutative rings can have interesting homotopies between units.
+	Due to this and similar phenomena, one should be careful when taking homotopy sheaves (doing so is not really a ``geometric'' operation).
+\end{ex}
+
+\subsection{Geometric (derived) stacks: desired properties}
+
+We would like to find a collection of ``nice'' objects in $\Stk_k$.
+By ``nice,'' we mean:
+\begin{enumerate}
+	\item Affines $\Spec R$ are nice.
+	\item $\tau$-locally affine stacks should be nice.
+	\item Quotients by group schemes of nice stacks should be nice.
 \end{enumerate}
+
+\subsection{Algebraic spaces}
+
+Let $\tau$ be the \'etale topology.
+The slogan to remember for algebraic spaces is that a scheme is to the Zariski topology as an algebraic space is to the \'etale topology.
+Thus, one should view an algebraic space as being ``\'etale locally affine.''
+
+\begin{dfn}
+	A derived stack $X$ is a \emph{derived algebraic space with affine diagonal} (DASAD) if there exists a surjection $\coprod_i \Spec S_i \to X$ such that, for any $\Spec R \to X$, the pullback $P = (\coprod_i \Spec S_i) \times_X \Spec R$ is $\Spec T$ for an \'etale $R$-algebra $T$.
+	Each $\Spec S_i \to X$ should be thought of as ``\'etale and affine.''
+	For surjectivity, recall first that a map of sheaves of sets $Y \to X$ is surjective if for all $x \in X(U)$, there exists a cover $V \to U$ such that $x|_V \in X(V)$ lifts to $Y(V)$.
+	The same definition works for sheaves of spaces (i.e.\ derived stacks): a map $Y \to X$ of derived stacks is surjective if $\pi_0^\tau Y \to \pi_0^\tau X$ is surjective.
+\end{dfn}
+
+\begin{rmk}
+	This definition of surjectivity is related to a remarkable property of $\Spaces$: given $Y \to X$ in $\Ssf$, if we take the \v{C}ech cover $Y_\bullet \to X$ where $Y_\bullet$ is the simplicial object given degreewise by $Y \times_X Y \times_X \dots \times_X Y$ (starting from $Y_0 = Y$), then $|Y_\bullet| \to X$ is an equivalence if and only if $\pi_0 Y \to \pi_0 X$ is an equivalence.
+	The result here is known as ``effectivity of groupoids.''
+\end{rmk}
+
+\begin{ex}
+	A separated classical scheme $X$ is a DASAD.
+\end{ex}
+
+\begin{dfn}
+	A morphism $X \to Y$ in $\Stk_k$ is a \emph{relative DASAD} (i.e.\ RDASAD) if, for all $\Spec R \to Y$, the pullback $X \times_Y \Spec R$ is a DASAD.
+\end{dfn}
+
+\begin{dfn}
+	A morphism $X \to \Spec S$ in $\Stk_k$ is an \emph{\'etale derived algebraic space} over $\Spec S$ if there is a surjection $\coprod_i \Spec S_i \to X$ such that
+	\begin{enumerate}
+		\item Each $S_i$ is \'etale over $S$.
+		\item Each $\Spec S_i \to X$ is a RDASAD.
+	\end{enumerate}
+\end{dfn}
+
+\begin{dfn}
+	A morphism $X \to Y$ in $\Stk_k$ is \emph{representable \'etale} if, for all $\Spec R \to Y$, the pullback $X \times_Y \Spec R$ is an \'etale algebraic space over $\Spec R$.
+\end{dfn}
+
+\begin{dfn}
+	A \emph{derived algebraic space} (DAS) is an object $X \in \Stk_k$ such that there exists a surjection $\coprod_i \Spec S_i \to X$ where each $\Spec S_i \to X$ is representable \'etale.
+\end{dfn}
+
+\begin{dfn}
+	A morphism $X \to Y$ in $\Stk_k$ is a relative derived algebraic space if, for all $\Spec R \to Y$, the pullback $X \times_Y \Spec R$ is a DAS.
+\end{dfn}
+
+\begin{dfn}
+	A DAS $X$ is smooth over $\Spec k$ if there exists a surjection $\coprod_i \Spec S_i \to X$ such that each $\Spec S_i \to X$ is representable \'etale and each $S_i$ is a smooth $k$-algebra.
+\end{dfn}
+
+The reason we need so many definitions is due to the fact that not everything is separable.
+
+\begin{rmk}
+	Let $X \in \Stk_k$ be a DAS and $R \in \CAlg_k$.
+	Then $X(R)$ is a set.
+	(If we take $R$ to be a derived commutative ring, we may get higher homotopy groups, but those would really be coming from $R$ rather than $X$ itself.)
+\end{rmk}
+
+The classical locus of a derived algebraic space is a classical algebraic space.
+
+\subsection{$B_\tau G$}
+
+Suppose $G$ is an algebraic group scheme over $k$.
+We would like to say that $B_\tau G$, the stack of $\tau$-locally trivial principal $G$-torsors, is geometric.
+For $G$ smooth, this will be the Platonic example of an Artin stack.
+
+A $G$-torsor is a map $Y \to X$ which is $G$-equivariant (for some $G$-action on $Y$ and the trivial $G$-action on $X$) such that the natural map $G \times Y \to Y \times_X Y$ (given by $(g, y) \mapsto (gy, y)$) is an equivalence.
+If fix $x \in X$ and consider a point $y \in Y_x$ of the fiber, this map gives an equivalence $G \simeq Y_x$.
+The ``$\tau$-locally trivial'' condition here means that there exists a $\tau$-cover $U \to X$ such that $G \times U \tilde{\to} Y \times_X U$ gives a $G$-equivariant equivalence.
+Note that the topology $\tau$ matters here -- different $\tau$ will give different answers.
+
+We have $H^1_\tau(X, G) = \pi_0(B_\tau G(X))$ and $H^0_\tau(X, G) = \pi_1(B_\tau G(X)) \simeq G(X)$.
+
+One can also interpret $B_\tau G = \pt / G$ (similarly to the construction of homotopy quotients of topological spaces).
+In the setting of derived stacks, one can consider the presheaf of spaces $R \mapsto B(G(R))$.
+We define $B_\tau G$ as the $\tau$-sheafification of this presheaf.
+
+\subsection{Geometric derived stacks}
+
+\begin{dfn}
+	\begin{enumerate}
+		\item A \emph{relative $0$-stack} is a relative DAS $X \to Y$.
+			This is furthermore \emph{smooth} if the fibers are smooth.
+		\item A \emph{relative $n$-stack} is a morphism $X \to Y$ in $\Stk_k$ such that, for all $\Spec R \to Y$, the pullback $P = X \times_Y \Spec R$ admits a surjection $\coprod_i \Spec S_i \to P$ which is a smooth relative $(n-1)$-stack.
+			This is furthermore \emph{smooth} if we can choose the $S_i$ to be smooth over $R$.
+		\item An \emph{$n$-stack} is a relative $n$-stack over $\Spec k$.
+	\end{enumerate}
+\end{dfn}
+
+\begin{ex}
+	\begin{enumerate}
+		\item $B\GL_1$ is a smooth $1$-stack.
+		\item If $G$ is a smooth affine group scheme and $G \curvearrowright X = \Spec R$, then $X / G$ is a $1$-stack which is smooth if $X$ is.
+		\item $B^n \GL_1$ is a smooth $n$-stack.
+	\end{enumerate}
+\end{ex}
+
+\begin{rmk}
+	We have
+	\[
+		\pi_1^{\acute{e}t} B^n \GL_1 = \begin{cases}
+			0 & i < n \\
+			\GG_m & i = n \\
+			\pi_{i-n} \Omega^\infty \Oc & i > n.
+		\end{cases}
+	\]
+	Also $(B^n \GL_1)\cl \simeq K(\GG_m^\heartsuit, n)$.
+\end{rmk}
 
 \end{document}
