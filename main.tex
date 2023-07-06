@@ -2235,7 +2235,7 @@ For an $R$-module $M$, one can define an algebra structure on $R \oplus M$ via t
 We call this the \emph{trivial square-zero extension} of $R$ by $M$.
 This satisfies
 \[
-	\Hom_{\CAlg_{k//R}}(R, R \oplus M) \cong \Der_k(R, M) \cong \Hom_R(\Omega^1_{R/k}.
+	\Hom_{\CAlg_{k//R}}(R, R \oplus M) \cong \Der_k(R, M) \cong \Hom_R(\Omega^1_{R/k}, M).
 \]
 
 \begin{ex}
@@ -2283,7 +2283,7 @@ This gives an explicit construction, but we can also give more abstract definiti
 			where the right square is a pullback square, and $\Dsf(-)_{\geq 0}$ is constructed using ``straightening-unstraightening'' (similar to the Grothendieck construction for turning a stack into a fibered category).
 			Objects of $\Dsf_{\geq 0}$ are given by pairs $(R \in \DAlg_k\cn, M \in \Dsf(R))$ with morphisms $(R, S) \to (M, N)$ given by pairs $(R \to S, S \otimes_R M \to N)$.
 			The diagonal arrow is $R \mapsto (R, \Omega^1_{R/k})$.
-			In this context, $\LL_{-/k}$ is defined as the left Kan extension of $\CAlg_k^{\mathrm{fp,poly}} \to \Dsf(-)_{\geq 0}$ along the map to $\DAlg_k\cn$.
+			In this context, $\LL_{-/k}$ is defined as the left Kan extension of $\Polyfp_k \to \Dsf(-)_{\geq 0}$ along the map to $\DAlg_k\cn$.
 	\end{enumerate}
 \end{cons}
 
