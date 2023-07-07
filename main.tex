@@ -1733,7 +1733,7 @@ Then $\Ind(\Asf)$ is a full subcategory of $\Bsf$ (the full cocomplete subcatego
 	Letting $R = \End(x_1 \oplus \dots x_n)$, we obtain $\Ind(\Asf) \simeq \Dsf(R\op)$.
 \end{ex}
 
-\section{Discussion, 7/3 (B. Antieau) -- }
+\section*{Discussion, 7/3 (B. Antieau) -- Ring Structure on $H_\bullet(\CC\PP^\infty, \QQ)$}
 
 How can we explicitly compute the ring structure on $H_\bullet(\CC\PP^\infty, \QQ)$?
 
@@ -2091,7 +2091,7 @@ We define $B_\tau G$ as the $\tau$-sheafification of this presheaf.
 	Also $(B^n \GL_1)\cl \simeq K(\GG_m^\heartsuit, n)$.
 \end{rmk}
 
-\section{Discussion, 7/5 (Multiple Presenters)}
+\section*{Discussion, 7/5 (Multiple Presenters)}
 
 \subsection{J. Mundinger -- ring structure on $H_\bullet(\CC\PP^\infty)$}
 
@@ -2162,7 +2162,7 @@ Thus looking only at the abelian category loses a lot of information.
 One can interpret $\Vect^\heartsuit$ as the heart of a t-structure on $\Loc$ (induced by the standard t-structure on $\Dsf(\CC)$).
 We then obtain 
 \[
-	\Fun(S^2, \Dsf(\CC)^\heartsuit) = \Fun(\Ho(S^2), \Dsf(\CC)) = \Fun(\tau_{\leq 1} S^2, \Dsf(\CC)^\heartsuit) = \Dsf(\CC)^\heartsuit.
+	\Fun(S^2, \Dsf(\CC)^\heartsuit) = \Fun(\Ho(S^2), \Dsf(\CC)^\heartsuit) = \Fun(\tau_{\leq 1} S^2, \Dsf(\CC)^\heartsuit) = \Dsf(\CC)^\heartsuit.
 \]
 This t-structure approach can also be used to understand the relationship between $\QCoh(X)$ and $\Dsf_{qc}(X)$.
 
@@ -2172,25 +2172,25 @@ We would like to prove that some stacks of interest are ``geometric.''
 
 \begin{thm}
 	Let $X$ be a geometrically connected smooth proper scheme over $k$.
-	Then $\Pic_{X/k}$, the stack of line bundles on $X$, is a $1$-stack.
+	Then $\ul{\Pic}_{X/k}$, the stack of line bundles on $X$, is a $1$-stack.
 	Furthermore, the cotangent complex at a point $\Lc$ is $\Rbf \Gamma(X, \Oc_X)^\vee[-1]$.
 \end{thm}
 
-Here $\Pic_{X/k}$ is defined on a derived commutative ring $R$ by
+Here $\ul{\Pic}_{X/k}$ is defined on a derived commutative ring $R$ by
 \[
-	\Pic_{X/k}(R) \simeq \Pic(\Dsf(X_R)),
+	\ul{\Pic}_{X/k}(R) \simeq \Pic(\Dsf(X_R)),
 \]
 where the latter indicates the collection of invertible objects in $\Dsf(X_R)$.
 
 The above theorem implies that the cotangent complex is concentrated in cohomological degrees $[-1, d-1]$ for $d = \dim (X / k)$).
-The $-1$ degree here captures the stackiness of $\Pic_{X/k}$, while the positive degree terms capture derived structure.
+The $-1$ degree here captures the stackiness of $\ul{\Pic}_{X/k}$, while the positive degree terms capture derived structure.
 
 \begin{cor}
-	If $H^i(X, \Oc_X) \neq 0$ for some $i \geq 3$, then $\Pic_{X/k}$ is not classical.
+	If $H^i(X, \Oc_X) \neq 0$ for some $i \geq 3$, then $\ul{\Pic}_{X/k}$ is not classical.
 \end{cor}
 
 This corollary might also hold for $i = 2$, but the proof would be harder.
-We can recover the classical Picard stack as $(\Pic_{X/k})\cl$.
+We can recover the classical Picard stack as $(\ul{\Pic}_{X/k})\cl$.
 
 \subsection{K\"ahler differentials}
 
@@ -2327,7 +2327,7 @@ Therefore:
 
 We can also understand cotangent complexes using square-zero extensions.
 
-Let $\DAlg_{k//R}\cn = (\DAlg_k\cn)_R$.
+Let $\DAlg_{k//R}\cn = (\DAlg_k\cn)_{/R}$.
 For $M \in \Dsf(R)_{\geq 0}$, we define the space of $k$-linear derivations $R \to M$ as
 \[
 	\Der_k(R, M) := \Map_{\DAlg_{k//R}\cn}(R, R \oplus M).
@@ -2401,7 +2401,7 @@ We can recover some exact sequences in Hartshorne from these together with the a
 	\[
 		\begin{tikzcd}
 			\tau_{\leq n} R \rar \dar & \tau_{\leq n - 1} R \dar \\
-			\tau_{\leq n - 1} R & \rar & \tau_{\leq n - 1} R \oplus H_n(R)[n+1]
+			\tau_{\leq n - 1} R \rar & \tau_{\leq n - 1} R \oplus H_n(R)[n+1]
 		\end{tikzcd}
 	\]
 	is a square-zero extension.
@@ -2412,7 +2412,7 @@ We can recover some exact sequences in Hartshorne from these together with the a
 	The obstruction to a lift existing is in $\Map_R(\LL_{R/k}, M[1])$.
 \end{prop}
 
-\subsection{Lecture 16, 7/6 (D. Arinkin) -- Working with (Compactly Generated) DG-Categories}
+\section{Lecture 16, 7/6 (D. Arinkin) -- Working with (Compactly Generated) DG-Categories}
 
 Last time, we defined
 \[
@@ -2439,7 +2439,7 @@ We can view $\Bsf = \Fun(\Asf\op, \Dsf(k))$.
 \end{prop}
 
 \begin{proof}
-	The forward direction is obvious.
+	The forward direction is not hard.
 	For the backward direction, use the fact that $\phi$ is determined by $\phi|_{\Asf\op}$.
 	(The result is then clear from the construction of $\Bsf$.)
 \end{proof}
@@ -2493,7 +2493,7 @@ The above provides a ``short exact sequence of DG-categories''
 \[
 	\Asf \leftrightarrows \Bsf \leftrightarrows \Csf.
 \]
-We can call $\Csf$ a \emph{localization of $\Bsf$} and $\Asf$ a \emph{colocalization of $\Csf$}.
+We can call $\Csf$ a \emph{localization of $\Bsf$} and $\Asf$ a \emph{colocalization of $\Bsf$}.
 
 \begin{ex}
 	For a DG-category $\Asf$, we have a decomposition of $\Csf(\Asf)$ into $\Csf(\Asf)\sfr$ and $\Csf(\Asf)\acy$.
@@ -2547,5 +2547,353 @@ Then:
 	\]
 	If $\{ G_\beta \} \subset \Asf^c$ generate $\Asf$ and $\{ F_\alpha \} \subset \Bsf^c$ are such that $\{ p(F_\alpha) \}$ generate $\Csf$, then $\{ F_\alpha \} \cup \{ G_\beta \}$ generate $\Bsf$.
 \end{exer}
+
+\section{Lecture 17, 7/7 (B. Antieau) -- Examples of $n$-Stacks}
+
+\subsection{The cotangent complex of stacks}
+
+Let $X \to Y$ be a map in $\Stk_k$.
+For any $x: \Spec R \to X$ and $M \in \Dsf(R)_{\geq 0}$, let
+\[
+	\Der_{X/Y}(x, M) = \fib\left(X(R \oplus M) \to X(R) \times_{Y(R)} Y(R \oplus M)\right).
+\]
+
+\begin{dfn}
+	An object $\LL \in \Dsf(X) = \lim_{\Spec S \to X} \Dsf(S)$ is a cotangent complex for $X \to Y$ if there is a natural equivalence
+	\[
+		\Der_{X/Y}(x, M) \simeq \Map_R(x^* \LL, M)
+	\]
+	for all $x: \Spec R \to X$.\footnote{In principle there could be multiple such $\LL$, as we are asking $\LL$ to be an object of $\Dsf(X)$ but only probing with connective objects.
+	For geometric stacks, this will not be an issue.}
+	If $\LL$ is unique, we write $\LL_{X/Y} = \LL$.
+\end{dfn}
+
+\begin{ex}
+	Considering
+	\[
+		\pt \xrightarrow{i} B \GL_1 \xrightarrow{p} \pt,
+	\]
+	we get $i^* \LL_p[1] \simeq \LL_i \simeq k[0]$ and therefore $i^* \LL_p \simeq k[-1]$.
+	This is generalized in a problem in the exercises.\footnote{The statement of the exercise is missing a shift.}
+\end{ex}
+
+In general, if the cotangent complex is concentrated in cohomological degree $\leq n$, then we expect that our map is a relative $n$-stack.
+
+\subsection{Moduli of objects}
+
+Define a derived prestack $\ul{\Perf}$ by
+\[
+	\ul{\Perf}(R) = \iota(\Perf(R)) = \iota(\Dsf(R)^c).
+\]
+Here $\iota$ is the underlying $\infty$-groupoid functor (i.e.\ $\iota(\Csf)$ forgets all non-identity equivalences in $\Csf$).
+
+\begin{ex}
+	For $R = \ZZ$, we have 
+	\[
+		\iota(\Perf(\ZZ)) = \coprod_{n \geq 0} B \GL_n(\ZZ).
+	\]
+\end{ex}
+
+\begin{thm}
+	The prestack $\ul{\Perf}$ is a derived stack (i.e.\ it satisfies \'etale or fppf descent).
+\end{thm}
+
+\begin{proof}
+	The idea is faithfully flat descent: if $R \to S$ is a faithfully flat morphism and $S^\bullet$ is the \v{C}ech complex of $S$ over $R$, then we have
+	\[
+		\Dsf(R) \simeq \Tot(\Dsf(S^\bullet)).
+	\]
+	We obtain $\Perf(R) \hookrightarrow \Tot(\Perf(S^\bullet))$, and we need to show that this is essentially surjective.
+
+	To prove essential surjectivity, note that we can pull back any object of $\Tot(\Perf(S^\bullet))$ to an object $M \in \Dsf(R)$.
+	This object $M$ is dualizable (since dualizablility can be checked locally and holds on $S^\bullet$).\footnote{Here we are using crucially that $R$ is commutative.}
+	Since dualizability in $\Dsf(R)$ is equivalent to perfectness, we get $M \in \Perf(R)$.
+\end{proof}
+
+We will use $\ul{\Perf}$ to construct many examples of geometric derived stacks.
+
+\subsection{$\Tor$-amplitude}
+
+\begin{dfn}
+	An object $M \in \Dsf(R)$ has $\Tor$-amplitude in $[a, b]$ if for any $N \in \Mod_{\pi_0 R}$, we have
+	\[
+		H_i(M \otimes^\Lbf_R N) = 0 \hspace{2em} \forall i \not\in [a, b].
+	\]
+\end{dfn}
+
+\begin{ex}
+	The ring $R$, viewed as a module over itself, has $\Tor$-amplitude in $[0, 0]$.
+\end{ex}
+
+\begin{ex}
+	If we have a cofiber sequence
+	\[
+		R \xrightarrow[f] R \to M,
+	\]
+	then $M$ has $\Tor$-amplitude in $[0, 1]$.
+\end{ex}
+
+Let $\ul{\Perf}_{[a,b]}$ be the substack of $\Perf$ classifying objects with $\Tor$-amplitude in $[a, b]$.
+
+\begin{thm}[To\"en-Vaqui\'e]
+	The derived stack $\ul{\Perf}$ is locally an $n$-stack, and we can write $\ul{\Perf} = \cup_n \ul{\Perf}_{[-n, n]}$.
+	Furthermore, each $\ul{\Perf}_{[a,b]}$ is a $(b - a + 1)$-stack which is locally of finite presentation.
+\end{thm}
+
+Here are some key facts about $\Tor$-amplitude.
+
+\begin{enumerate}
+	\item $\Perf_{[0,0]}(R) = \Proj_R^c$ (consisting of compact projective $R$-modules) and $\Ho(\Perf_{[0,0]}(R)) = \Proj_{\pi_0 R}^{\mathrm{fp}}$.
+	\item If $P \in \Perf(R)$, then $P$ has $\Tor$-amplitude in $[a,b]$ for some $a, b \in \ZZ$.
+	\item If $P \in \Perf_{[a,b]}(R)$, then $H_a(P)$ is finitely presented as a $(\pi_0 R)$-module.
+	\item If $P$ has $\Tor$-amplitude in $[a, b]$ with $a < b$, then there exists a map $R^I[a] \to P$ which is surjective on $H_0$, and the cofiber $Q$ of this map has $\Tor$-amplitude in $[a+1, b]$.
+	\item If $P$ has $\Tor$-amplitude in $[a, b]$, then its $R$-linear dual has $\Tor$-amplitude in $[-b, -a]$.
+\end{enumerate}
+
+With these facts, we can now discuss the proof of the Theorem.
+
+\begin{proof}
+	Proceed by induction on $n = b - a$.
+	Note that $\ul{\Perf}_{[a,b]} \simeq \ul{\Perf}_{[0,n]}$, so it suffices to consider the latter.
+
+	For the base case ($n = 0$), $\ul{\Perf}_{0,0}$ is the moduli of projectives of $R$.
+	We have a natural map $\ul{B \GL_N} \to \ul{\Perf}_{[0,0]}$.
+	This map is surjective because, Zariski-locally, any projective is free.
+	Furthermore, the map is fully faithful, hence is an equivalence of stacks.
+
+	Thus it suffices to show that $B \GL_N$ is a $1$-stack locally of finite presentation.
+	To achieve this, we show that $\pt \to \ul{B \GL_n}$ is a smooth relative $0$-stack.
+	This follows from the fact that $\GL_n$ is a smooth $0$-stack (which in turn follows from the open embedding $\GL_N(R) \subset \End(R^N) \simeq R^{N^2}$, i.e.\ $\ul{\GL}_N \subset (\Omega^\infty \Oc)^{N^2}$, as the complement of $\det = 0$).
+
+	For the inductive step, we assume that $\ul{\Perf}_{[1,n]}$ is an $n$-stack.
+	Consider the pullback in $\Stk_k$:
+	\[
+		\begin{tikzcd}
+			U \rar \dar & \iota \Fun(\Delta^1, \Perf(-)) \dar \\
+			\ul{\Perf}_{[1,n]} \times_{\Spec k} \ul{\Perf}_{1,1} \rar & \ul{\Perf}^{\partial \Delta^1}.
+		\end{tikzcd}
+	\]
+	The object in the lower left corner of the pullback square is an $n$-stack.
+	We can view $U$ as the stack of maps $f: Q \to R^N[1]$ for $Q \in \Perf_{1,N}(R)$.
+	There is a natural map $U \to \ul{\Perf}_{[0,n]}$ given by $f \mapsto \fib(f)$.
+	Every object of $\ul{\Perf}_{[0,n]}$ fits into a truncation fiber sequence, showing that this map is surjective.
+
+	Thus it suffices to show that $U$ is an $n$-stack (locally of finite presentation) and that $U \to \ul{\Perf}_{[0,n]}$ is a smooth surjective relative $n$-stack.
+	We will prove the former claim and omit the latter (which is similar) for time.
+	Consider a pullback diagram
+	\[
+		\begin{tikzcd}
+			P \rar \dar & \Spec R \dar \\
+			U \rar & \ul{\Perf}_{[1,n]} \times \ul{\Perf}_{[1,1]}
+		\end{tikzcd}
+	\]
+	where $\Spec R \to \ul{\Perf}_{[1,1]}$ classifies $(Q, R^N[1])$.
+	Here $P$ is the ``stack of arrows $Q \to R^N[1]$.''
+	More precisely,
+	\[
+		P(S) \simeq \Map_{\Dsf(S)_{\geq 0}(Q)}(S \otimes_R Q, S^N[1]) \simeq \Map_{\Dsf(S)_{\geq 0}}((Q \otimes R^N[-1]) \otimes_R S, S).
+	\]
+	(Note that, since $Q \in \Dsf(R)_{\geq 1}$, we have $Q \otimes R^N[-1] \in \Dsf(R)_{\geq 0}$.)
+	Further rewriting, we get
+	\[
+		P(S) \simeq \Map_{\Dsf(R)_{\geq 0}}(Q \otimes R^N[-1], S) \simeq \Map_{\DAlg_R\cn}(\Lbf \Sym_R (Q \otimes R^N[-1]), S).
+	\]
+	Thus $P \simeq \Spec \Lbf \Sym_R (Q \otimes_R R^N[-1])$.
+	It follows that $U$ is an $n$-stack.
+
+	For the omitted part of the proof, argue similarly.
+	The fibers $P' = U \times_{\ul{\Perf}_{[0,n]}} \Spec R$ can be written as
+	\[
+		P' \simeq \coprod_N \left\{ P \to Q \to R^N[1] \right\} \simeq \coprod_N \left\{ R^N \to P \textrm{surjective on $\pi_0$}\right\}.
+	\]
+	This is an open substack of $\{ R^N \to P \} \simeq \Spec \Lbf \Sym_R (R^N \otimes_R P^\vee)$.
+	A crucial problem is that $\Lbf \Sym_R (R^N \otimes_R P^\vee)$ is not connective, so we are not guaranteed that this is a stack.
+	We can fix this by noting that
+	\[
+		\Spec \Lbf \Sym_k k[-r] := \Map_{\DAlg_k}(\Lbf \Sym_k k[-r], -) \simeq B^r \Omega^\infty \Oc
+	\]
+	using the defining adjunction of $\Lbf \Sym_k$.
+	This lets us make sense of things.
+\end{proof}
+
+\subsection{$\ul{\Rep}_A$}
+
+Let $A$ be a $k$-linear DGA.
+We define a stack $\ul{\Rep}_A$ by
+\[
+	\ul{\Rep}_A(R) = \iota \Mod_{R \otimes_k A}(\Perf(R)).
+\]
+
+\begin{thm}[To\"en-Vaqui\'e]
+	If $A$ is compact as a DGA, then $\ul{\Rep}_A$ is locally geometric.
+\end{thm}
+
+The idea is to look at the fibers of $\ul{\Rep}_A \to \ul{\Perf}$.
+One argues similarly to above, but also using the fact that every compact DGA can be presented using free ones.
+
+\begin{lem}
+	At an $R$-point $P: \Spec R \to \ul{\Rep}_A$, the cotangent complex is
+	\[
+		\Map_{R \otimes_k A}^{\textrm{dg}}(P, P)^\vee[-1].
+	\]
+\end{lem}
+
+\subsection{$\ul{\Mf}_X$ and $\ul{\Pic}_{X/k}$}
+
+Let $X$ be smooth and proper over $k$.
+Then $\Dsf^b(X) \simeq \Perf(A)$ for some compact DGA $A$.
+We define $\ul{\Mf}_X = \ul{\Rep}_A$, so $\ul{\Mf}_X(R) = \iota \Perf(X_R)$.
+General moduli spaces of sheaves will be substacks of $\ul{\Mf}_X$.
+
+Let $\ul{\Pic}_X$ be the open substack of $\ul{\Mf}_X$ classifying $\otimes$-invertible objects in $\Dsf(X_R)$.
+For $\Lc \in \ul{\Pic}_{X/k}(k)$, we have
+\[
+	\LL_\Lc \simeq \Map_X^{\textrm{dg}}(\Lc, \Lc)^\vee[-1] \simeq \Map_X^{\textrm{dg}}(\Oc_X, \Oc_X)^\vee[-1] \simeq \Rbf \Gamma(X, \Oc_X)^\vee[-1].
+\]
+
+Avramov's theorem tells us that the cotangent complex of a classical Artin stack either:
+\begin{enumerate}
+	\item Has $\Tor$-amplitude in $[0, 0]$ (the smooth case),
+	\item Has $\Tor$-amplitude in $[0, 1]$ (the LCI case), or
+	\item Is unbounded.
+\end{enumerate}
+Thus, if $H^i(X, \Oc_X) \neq 0$ for some $i > 2$, then $\ul{\Pic}_{X/k}$ is non-classical.
+
+\section{Lecture 18, 7/7 (D. Arinkin) -- Operations on DG-Categories and Geometry}
+
+Last time, we discussed quotients of DG-categories.
+In the ``large'' (cocomplete) context, we get short exact sequences with adjunctions
+\[
+	\Asf \leftrightarrow \Bsf \leftrightarrow \Csf.
+\]
+Working with ``small'' DG-categories (e.g.\ DG-categories of compact objects), the functors in the short exact sequences typically do not admit adjoints, and we only get
+\[
+	\Asf^c \to \Bsf^c \to \Csf^c.
+\]
+The Thomason-Trobaugh theorem measures the surjectivity of $\Bsf \to \Csf$ in some geometric cases.
+
+\subsection{Tensor products}
+
+For small DG-categories $\Asf$ and $\Bsf$, we define the tensor product $\Asf \otimes \Bsf$ by
+\begin{enumerate}
+	\item $\Ob(\Asf \otimes \Bsf) = \Ob \Asf \times \Ob \Bsf$
+	\item $\Hom_{\Asf \otimes \Bsf}(a_1 \otimes b_1, a_2 \otimes b_2) = \Hom_\Asf(a_1, a_2) \otimes \Hom_\Bsf(b_1, b_2)$.
+\end{enumerate}
+One can also characterize this in terms of universal properties.
+
+This definition works well for arbitrary DG-categories.
+If we want to restrict to pre-triangulated / Karoubian / ... DG-categories, we take the tensor product as above and then take the pre-triangulated / Karoubian / ... completion of the result.
+
+For ``large'' DG-categories, we want a tensor product of cocomplete DG-categories satisfying
+\[
+	\Ind(\Asf) \otimes\cc \Ind(\Bsf) = \Ind(\Asf \otimes \Bsf).
+\]
+Note here that we are using two different notions of $\otimes$.\footnote{I am using the notation $\otimes\cc$ to keep the ideas separate, though this was not used in the lecture.}
+In general, the tensor product of cocomplete DG-categories is defined by a universal property using continuous bilinear functors.
+
+More precisely, starting from cocomplete DG-categories $\Asf$ and $\Bsf$, we construct the cocomplete tensor product $\Asf \otimes\cc \Bsf$ as a quotient of $\Ind(\Asf \otimes \Bsf)$ by objects of the forms
+\[
+	\cone\left(\oplus_{\alpha} (a_\alpha \otimes b) \to (\oplus a_\alpha) \otimes b\right)
+\]
+and
+\[
+	\cone\left(\oplus_{\alpha} (a \otimes b_\alpha) \to a \otimes (\oplus b_\alpha)\right)
+\]
+
+\subsection{Duals}
+
+For ``small'' DG-categories, we can define duals using opposite categories: the dual of $\Asf$ is $\Asf\op$.
+For ``large'' DG-categories, we would like to have a notion of dual satisfying $(\Ind(\Asf))^\vee = \Ind(\Asf\op)$. 
+Note that
+\[
+	\Ind(\Asf\op) = \Dsf(\Asf) = \Fun(\Asf, \Dsf(k)) = \Fun(\Ind(\Asf), \Dsf(k))\cont,
+\]
+so we can use this to define $(\Ind(\Asf))^\vee$.
+
+In general, we can use the tensor product of cocomplete DG-categories to define a notion of dualizability.
+All compactly generated DG-categories are dualizable, and the above construction gives the dual.
+Duals of other DG-categories may not exist.
+
+\subsection{Geometry}
+
+Let $X$ be a quasicompact separated scheme.
+Recall that $\QCoh(X) = \Ind \Perf X$ is compactly generated, in fact by a single object (by the proof of Thomason-Trobaugh).
+It follows that $\QCoh(X)^\vee = \Ind(\Perf(X)\op)$.
+
+\begin{ex}
+	If $X = \Spec R$ is affine, then $\QCoh(X) = \Dsf(R)$ and $\QCoh(X)^\vee = \Dsf(R\op)$.
+	Since $R$ is commutative, we get a natural identification $\QCoh(X) \simeq \QCoh(X)^\vee$.
+\end{ex}
+
+More generally, we have an antiequivalence $\Perf(X)\op \tilde{\to} \Perf(X)$ given by $\scHom(-,\Oc_X)$, the ordinary dual.\footnote{In this case, Grothendieck / Serre duality is not as well behaved, e.g.\ $\omega_X$ may not be perfect.}
+Therefore $\QCoh(X) \simeq \QCoh(X)^\vee$.
+This identification corresponds to a functor $\QCoh(X) \times \QCoh(X) \to \Dsf(k)$, but how do we identify this functor?
+The functor arises as an $\Ind$-extension of $\Hom(-,-): \Perf(X)\op \times \Perf(X) \to \Dsf(k)$.
+Using our antiequivalence, we see that the functor $\QCoh(X) \times \QCoh(X) \to \Dsf(k)$ is given by
+\[
+	(\Fc, \Gc) \mapsto \Gamma(X, \Fc \otimes \Gc).
+\]
+One can view this as categorifying the duality pairing of functional analysis: $(f, g) \mapsto \int_X fg d\mu$.
+
+If $X$ and $Y$ are both quasicompact separated schemes, then
+\[
+	\QCoh(X) \otimes \QCoh(Y) = \Ind(\Perf(X) \otimes \Perf(Y)).
+\]
+We claim that this is equivalent to $\QCoh(X \times Y) = \Ind(\Perf(X \times Y))$.
+For affine schemes, this is easy.
+
+More generally, consider the functor $\Perf(X) \otimes \Perf(Y) \to \Perf(X \times Y)$ given by $(\Fc, \Gc) \mapsto \Fc \boxtimes \Gc$.
+One can show this is fully faithful (since $\Perf(-)$ is defined as a limit, and we can compute $\Hom$ in limit DG-categories easily).
+One then shows that the image generates $\QCoh(X \times Y)$, i.e.\ that the right orthogonal $(\Perf(X) \otimes \Perf(Y))^\perp$ vanishes.
+Thus we obtain the desired equivalence.
+
+\begin{cor}
+	\[
+		\Fun(\QCoh(X), \QCoh(Y))\cont \simeq \QCoh(X \times Y).
+	\]
+\end{cor}
+
+\begin{proof}
+	One can reduce to the case of ``small'' DG-categories:
+	\begin{align*}
+		\Fun(\QCoh(X), \QCoh(Y))\cont &\simeq \Fun(\Dsf(\Perf(X)\op), \Dsf(\Perf(Y)\op))\cont \\
+		&\simeq \Dsf(\Perf(X) \otimes \Perf(Y)\op) \\
+		&\simeq \Dsf(\Perf(X \times Y)\op)
+		&\simeq \QCoh(X \times Y).
+	\end{align*}
+
+	Alternatively, one can use dualizability to write 
+	\[
+		\Fun(\QCoh(X), \QCoh(Y))\cont \simeq \QCoh(X)^\vee \otimes \QCoh(Y) \simeq \QCoh(X \times Y).
+	\]
+\end{proof}
+
+To use this equivalence, we would like to make things more explicit.
+Given $\Kc \in \QCoh(X \times Y)$, the corresponding functor is the Fourier-Mukai transform
+\[
+	\Phi_\Kc(-) = p_{Y*} (p_X^*(-) \otimes \Kc).
+\]
+Note that this is an equivalence of DG-categories, so morphisms in $\QCoh(X \times Y)$ correspond to natural transformations of functors, etc.
+
+\begin{ex}
+	Consider the identity functor $\id_{\QCoh(X)} \in \Fun(\QCoh(X), \QCoh(X))\cont$.
+	Under the above equivalence, this corresponds to the sheaf $\Oc_\Delta \in \QCoh(X \times X)$.
+	Therefore
+	\[
+		\Ext^\bullet(\id_{\QCoh(X)}, \id_{\QCoh(X)}) = \Ext^\bullet_{X \times X}(\Oc_\Delta, \Oc_\Delta).
+	\]
+	This computes the \emph{Hochschild cohomology} of $X$.
+\end{ex}
+
+We can ask several further interesting questions.
+Given a morphism $X \to Y$, we may view $\QCoh(Y)$ as a commutative algebra via its internal tensor product.
+Then $\QCoh(X)$ is a module over $(\QCoh(Y), \otimes)$.
+We can study properties of such modules and / or try to classify and understand modules over $(\QCoh(Y), \otimes)$.
+
+Unfortunately, with all of this freedom, it can be hard to formalize everything that's happening.
+For example, we have isomorphisms for associativity, base change, projection formulas, etc.
+How do we tell whether these isomorphisms are compatible?
+It turns out to be hopeless to write these explicitly, so it's better to use indirect approaches.
+The book of Gaitsgory-Rozenblyum aims to set things up properly so that everything that ``\emph{should}'' work \emph{does}.
 
 \end{document}

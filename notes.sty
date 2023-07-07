@@ -1,6 +1,7 @@
 \ProvidesPackage{notes}
 
 \usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
 \usepackage[capitalize]{cleveref}
 \usepackage{eulervm}
@@ -17,6 +18,7 @@
 \newcommand{\ul}{\underline}
 
 \newcommand{\acy}{^{\mathrm{acyclic}}}
+\newcommand{\cc}{^{\mathrm{cc}}}
 \newcommand{\cf}{^{\mathrm{cf}}}
 \newcommand{\cl}{^{\mathrm{cl}}}
 \newcommand{\cn}{^{\mathrm{cn}}}
@@ -27,6 +29,8 @@
 \newcommand{\op}{^{\mathrm{op}}}
 \newcommand{\pretr}{^{\mathrm{pretr}}}
 \newcommand{\sfr}{^{\mathrm{semifree}}}
+
+\newcommand{\scHom}{\mathcal{H}\mkern-3mu\operatorname{om}}
 
 \DeclareMathOperator{\ad}{ad}
 \DeclareMathOperator{\Ad}{Ad}
@@ -39,13 +43,13 @@
 \DeclareMathOperator{\Der}{Der}
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\fib}{fib}
 \DeclareMathOperator{\Gr}{Gr}
 \DeclareMathOperator{\GL}{GL}
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\length}{length}
 \DeclareMathOperator{\Ob}{Ob}
-\DeclareMathOperator{\Pic}{Pic}
 \DeclareMathOperator{\pt}{pt}
 \DeclareMathOperator{\rk}{rk}
 \DeclareMathOperator{\slope}{slope}
@@ -81,6 +85,7 @@
 % mathfrak
 \newcommand{\Lf}{\mathfrak{L}}
 \newcommand{\mf}{\mathfrak{m}}
+\newcommand{\Mf}{\mathfrak{M}}
 \newcommand{\pf}{\mathfrak{p}}
 \newcommand{\Uf}{\mathfrak{U}}
 \newcommand{\Xf}{\mathfrak{X}}
@@ -125,10 +130,13 @@
 \newcommand{\Nhc}{\mathsf{N}_\bullet^{\mathrm{hc}}}
 \newcommand{\Path}{\mathsf{Path}}
 \newcommand{\Perf}{\mathsf{Perf}}
+\newcommand{\Pic}{\mathsf{Pic}}
 \newcommand{\Polyfp}{\mathsf{Poly}^{\mathrm{fp}}}
 \newcommand{\PreStk}{\mathsf{PreStk}}
+\newcommand{\Proj}{\mathsf{Proj}}
 \newcommand{\Psh}{\mathsf{Psh}}
 \newcommand{\QCoh}{\mathsf{QCoh}}
+\newcommand{\Rep}{\mathsf{Rep}}
 \newcommand{\Sch}{\mathsf{Sch}}
 \newcommand{\Set}{\mathsf{Set}}
 \newcommand{\sSet}{\mathsf{sSet}}
