@@ -3,11 +3,20 @@
 \usepackage{notes}
 
 \title{Derived Algebraic Geometry Notes}
+
 \date{\today}
 
 \begin{document}
 
+\begin{abstract}
+	These are my (John S.\ Nolan's) notes on lectures from the 2023 MSRI / SLMath summer school on derived algebraic geometry.
+	Lectures were primarily given by Ben Antieau and Dima Arinkin.
+\end{abstract}
+
+
 \maketitle
+
+\tableofcontents
 
 \section{Lecture 1, 6/26 (D. Arinkin) -- DG-Categories}
 
@@ -111,7 +120,7 @@ A DG-functor $F: \Asf \to \Bsf$ is a strict equivalence if
 \item $F$ is strictly fully faithful: for all $x, y \in \Ob \Asf$, $\Hom_\Asf(x, y) \to \Hom_\Bsf(F(x), F(y))$ is an isomorphism.
 \item $F$ is strictly essentially surjective: for all $y \in \Ob \Bsf$, there exists $x \in \Ob \Asf$ such that $F(x)$ is isomorphic to $y$.
 \end{enumerate}
-As one knows from the study of derived categories, the notion of ``isomorphism'' here is often too strong - one would rather consider quasi-isomorphisms or other weaker notions.
+As one knows from the study of derived categories, the notion of ``isomorphism'' here is often too strong -- one would rather consider quasi-isomorphisms or other weaker notions.
 
 A better notion is that of \emph{quasi-equivalence}.
 A DG-functor $F: \Asf \to \Bsf$ is a quasi-equivalence if
@@ -378,7 +387,7 @@ Here we will define some schemes by their functors of points.
 \begin{ex}
 	The correct definition of $\PP^n_k$ is via the functor of points
 	\[
-		\PP^n_k(R) = \{ (P, q) \, | \, P \textrm{a rank $1$ projective module over $R$}, q: R^{n+1} \twoheadrightarrow P \}.
+		\PP^n_k(R) = \{ (P, q) \, | \, P \textrm{ a rank $1$ projective module over $R$ }, q: R^{n+1} \twoheadrightarrow P \}.
 	\]
 \end{ex}
 
@@ -422,8 +431,8 @@ Dually, the category of cosimplicial objects in $\Csf$ is $\csf\Csf = \Fun(\Delt
 	Consider the left Kan extension $|-|: \sSet \to \Top$ in
 	\[
 		\begin{tikzcd}
-			\Delta \arrow[r, "\Delta^\bullet_{\mathrm{top}}"] \arrow[d, "{[n]} \mapsto \Delta^n"] & \mathrm{Top} \\
-	\sSet \arrow[ur, dashed, "|-|"]
+			\Delta \arrow[r, "\Delta^\bullet_{\mathrm{top}}"] \arrow[d, swap, "{[n]} \mapsto \Delta^n"] & \mathrm{Top} \\
+	\sSet \arrow[ur, dashed, swap, "|-|"]
 		\end{tikzcd}
 	\]
 	We call this functor \emph{geometric realization}.
@@ -468,7 +477,7 @@ Studying $\infty$-categories will allow us to achieve our goal of unifying homot
 Namely, there is a model structure on $\sSet$ such that if we invert weak equivalences, we get a category (Quillen?)-equivalent to $\Top$ with weak homotopy equivalences inverted.
 There was some discussion of ``Joyal model structures'' but I missed it.
 
-\section{Lecture 4, 6/27 (D. Arinkin) - Derived Categories}
+\section{Lecture 4, 6/27 (D. Arinkin) -- Derived Categories}
 
 Recall what we did last time.
 If $\Asf$ is a DG-category, then $\Hom_\Asf(x, y)$ is a chain complex for all $x, y \in \Ob \Asf$.
@@ -641,8 +650,8 @@ However, in general, $d$ has interesting upper triangular behavior.
 
 \begin{ex}
 	Suppose $M = M_1$ where $M_0 = R e_0$ and $M_1 / M_0 = R e_1$.
-	Then we can write $M \cong R \tilde{e_1} \oplus R e_0$ (ignoring differentials).
-	Here $d$ satisfies $d(e_0) = 0$ and $d(\tilde{e_1}) = s e_0$ for some $s \in R$.
+	Then we can write $M \cong R \tilde{e}_1 \oplus R e_0$ (ignoring differentials).
+	Here $d$ satisfies $d(e_0) = 0$ and $d(\tilde{e}_1) = s e_0$ for some $s \in R$.
 	It is a good exercise to find the conditions $s$ must satisfy for this to give a well-defined module.
 \end{ex}
 
@@ -683,7 +692,7 @@ Note that if $M = \oplus_i h_{x_i}[d_i]$, then we can understand $M(a)$ concrete
 M(a) = \oplus_i \Hom(x_i, a)[d_i].
 \]
 
-\section{Lecture 6, 6/28 (B. Antieau) -- ???}
+\section{Lecture 6, 6/28 (B. Antieau) -- $\infty$-Categories, Model Categories, CDGAs}
 
 \subsection{More on $\infty$-categories}
 
@@ -870,7 +879,7 @@ It is not clear what a useful analogue of this would be for non-connective CDGAs
 	We end up with $A \cong \QQ[x_{2n}] \otimes \bigwedge_\QQ(y_{4n+1})$, with $d(y_{4n+1}) = x_{2n}^2$.
 \end{ex}
 
-\section{Lecture 7, 6/29 (B. Antieau) -- Construction of $\infty$-Categories and More Derived Commutative Rings}
+\section{Lecture 7, 6/29 (B. Antieau) -- Construction of $\infty$-Categories, More Derived Commutative Rings}
 
 \subsection{Bootstrapping}
 
@@ -905,7 +914,7 @@ Suppose we have a ``simplicial model category'' $\Msf$ -- this implies in partic
 Then $\Nhc(\Msf\cf)$ is an $\infty$-category.
 
 For a general model category $\Msf$, we can construct a ``hammock localization'' $L^H \Msf$, which is a simplicial category.
-We can furthermore apply a functor $\Ex\infty$ which turns simplicial categories into categories enriched in Kan complexes.
+We can furthermore apply a functor $\Ex^\infty$ which turns simplicial categories into categories enriched in Kan complexes.
 Applying $\Nhc$ gives an $\infty$-category $\Nhc(\Ex^\infty(L^H \Msf))$.
 More details can be found in a paper of Dwyer and Kan.
 
@@ -961,7 +970,7 @@ When working with the corresponding $\infty$-categories, we consider the corresp
 	\begin{enumerate}
 		\item $\pi_\bullet \Lbf \Sym (\ZZ[0]) = \ZZ[x]$ with $|x| = 0$.
 		\item $\pi_\bullet \Lbf \Sym (\ZZ[1]) = \bigwedge_\ZZ(y) = \ZZ[y] / y^2$ with $|y| = 1$.
-		\item $\pi_\bullet \Lbf \Sym (\ZZ[2]) = \Gamma_{\mathrm{pd}(z)}$, the divided power algebra in $\QQ[z]$ spanned over $\ZZ$ by the elements $z^n / n!$.
+		\item $\pi_\bullet \Lbf \Sym (\ZZ[2]) = \Gamma_{\mathrm{pd}}(z)$, the divided power algebra in $\QQ[z]$ spanned over $\ZZ$ by the elements $z^n / n!$.
 			Here $|z| = 2$.
 	\end{enumerate}
 \end{ex}
@@ -1087,7 +1096,7 @@ If $h: \Asf \to \Asf\pretr$ is a quasi-equivalence, we say that $\Asf$ is a \emp
 	Perfect modules do not quite fit into the picture discussed so far -- we also need to allow for (homotopy) direct summands.
 \end{rmk}
 
-\section*{Discussion, 6/29 (K. Schefers) - Homotopical Thinking}
+\section*{Discussion, 6/29 (K. Schefers) -- Homotopical Thinking}
 
 The goal of this discussion is to teach some ``folk $\infty$-category theory'' -- i.e.\ intuition for $\infty$-categories and homotopy theory.
 
@@ -1171,7 +1180,10 @@ If we consider a classical ring as a one-object DG-category, these four levels c
 \end{ex}
 
 The above Example shows in particular that $(\Asf\pretr)\pretr \simeq \Asf\pretr$.
-Similarly, we can show that $(((\Asf\pretr)\Kar)\pretr)\Kar \simeq (Asf\pretr)\Kar$.
+Similarly, we can show that 
+\[
+	(((\Asf\pretr)\Kar)\pretr)\Kar \simeq (Asf\pretr)\Kar.
+\]
 However, $\Ind(-)$ is not an idempotent operation, i.e.\ $\Ind(\Ind(\Asf)) \not\simeq \Ind(\Asf)$, as the construction of $\Ind$ ``freely adds colimits.''
 This can be explained by the fact that DG-functors do not automatically respect infinite direct sums.
 However, we do have $\Ind((\Asf\pretr)\Kar) \simeq \Ind(\Asf)$.
@@ -1602,7 +1614,7 @@ Note that smooth and faithful implies fppf.
 	and
 	\[
 		\begin{tikzcd}
-			0 \rar & \frac{\pi_{i+1} S}{2} \rar \pi_i X(S) \rar & (\pi_i)(S)[2] \rar & 0,
+			0 \rar & \frac{\pi_{i+1} S}{2} \rar & \pi_i X(S) \rar & (\pi_i)(S)[2] \rar & 0,
 		\end{tikzcd}
 	\]
 	allowing us to compute $\pi_i X(S)$.
@@ -1875,11 +1887,11 @@ One of the first affirmative answers to the question of compact generation is th
 			If $Y = \{ f_1 = \dots = f_k = 0 \}$, then we can take $\Gc$ to be the complex $\bigotimes_{i=1}^k (f_i: \Oc_V \to \Oc_V)$.
 			Extend these to $\tilde{\Gc}_\alpha \in \Perf(X)$ such that $\tilde{\Gc}_\alpha|_U = 0$.
 		\item The collection $\{\tilde{\Fc}_\alpha\} \cup \{\tilde{\Gc}_\beta\}$ generates $\QCoh(X)$.
-			This is comparatively easy to show.
+			This is comparatively easy to show. \qedhere
 	\end{enumerate}
 \end{proof}
 
-\section{Lecture 14, 7/5 (B. Antieau) - More on derived stacks}
+\section{Lecture 14, 7/5 (B. Antieau) -- More on derived stacks}
 
 Recall that the category of derived stacks (for the $\tau$-topology) is defined as $\Stk_k = \Sh_\tau(\dAff_k)$.
 
@@ -2345,7 +2357,7 @@ For $M \in \Dsf(R)_{\geq 0}$, we define the space of $k$-linear derivations $R \
 	This is mostly an exercise.
 	The key idea is that, for $S \to T$ over $R$, we have a fiber sequence
 	\[
-		\Map_{\DAlg_{k//R}\cn}(S, T) \to \Map_{\DAlg_k\cn}(S, T) \to \Map_{\DAlg_k\cn}(S, R).
+		\Map_{\DAlg_{k//R}\cn}(S, T) \to \Map_{\DAlg_k\cn}(S, T) \to \Map_{\DAlg_k\cn}(S, R). \qedhere
 	\]
 \end{proof}
 
@@ -2379,7 +2391,7 @@ We can recover some exact sequences in Hartshorne from these together with the a
 	\[
 		\begin{tikzcd}
 			\tilde{S} \rar \dar & S \dar["0 \textrm{ derivation}"] \\
-			S \rar["\textrm{any derivation}"] & S \oplus M[1]
+			S \rar[swap, "\textrm{any derivation}"] & S \oplus M[1]
 		\end{tikzcd}
 	\]
 \end{dfn}
@@ -2628,7 +2640,9 @@ We will use $\ul{\Perf}$ to construct many examples of geometric derived stacks.
 \begin{ex}
 	If we have a cofiber sequence
 	\[
-		R \xrightarrow[f] R \to M,
+		\begin{tikzcd}
+			R \rar["f"] & R \rar & M,
+		\end{tikzcd}
 	\]
 	then $M$ has $\Tor$-amplitude in $[0, 1]$.
 \end{ex}
@@ -2704,7 +2718,7 @@ With these facts, we can now discuss the proof of the Theorem.
 	For the omitted part of the proof, argue similarly.
 	The fibers $P' = U \times_{\ul{\Perf}_{[0,n]}} \Spec R$ can be written as
 	\[
-		P' \simeq \coprod_N \left\{ P \to Q \to R^N[1] \right\} \simeq \coprod_N \left\{ R^N \to P \textrm{surjective on $\pi_0$}\right\}.
+		P' \simeq \coprod_N \left\{ P \to Q \to R^N[1] \right\} \simeq \coprod_N \left\{ R^N \to P \textrm{ surjective on } \pi_0 \right\}.
 	\]
 	This is an open substack of $\{ R^N \to P \} \simeq \Spec \Lbf \Sym_R (R^N \otimes_R P^\vee)$.
 	A crucial problem is that $\Lbf \Sym_R (R^N \otimes_R P^\vee)$ is not connective, so we are not guaranteed that this is a stack.
@@ -2858,13 +2872,13 @@ Thus we obtain the desired equivalence.
 	\begin{align*}
 		\Fun(\QCoh(X), \QCoh(Y))\cont &\simeq \Fun(\Dsf(\Perf(X)\op), \Dsf(\Perf(Y)\op))\cont \\
 		&\simeq \Dsf(\Perf(X) \otimes \Perf(Y)\op) \\
-		&\simeq \Dsf(\Perf(X \times Y)\op)
+		&\simeq \Dsf(\Perf(X \times Y)\op) \\
 		&\simeq \QCoh(X \times Y).
 	\end{align*}
 
 	Alternatively, one can use dualizability to write 
 	\[
-		\Fun(\QCoh(X), \QCoh(Y))\cont \simeq \QCoh(X)^\vee \otimes \QCoh(Y) \simeq \QCoh(X \times Y).
+		\Fun(\QCoh(X), \QCoh(Y))\cont \simeq \QCoh(X)^\vee \otimes \QCoh(Y) \simeq \QCoh(X \times Y). \qedhere
 	\]
 \end{proof}
 
